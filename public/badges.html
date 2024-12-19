@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>PMTTYD - Badges</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <link id="datasrc" rel="preload" href="/assets/badges.json" as="fetch">
+    <link id="imgsrc" rel="preload" href="/assets/badges.png" as="image">
+
+    <style>
+        :root {
+            --color-light: white;
+            --color-base: grey;
+            --color-dark: black;
+
+            font-family: Verdana, sans-serif;
+        }
+
+        .badges {
+            --color-light: #c5fd81;
+            --color-base: #41de30;
+            --color-dark: #259a19;
+        }
+
+        .recipes {
+            --color-light: #e39bbf;
+            --color-base: #da7aaa;
+            --color-dark: #b43273;
+        }
+
+        .free-red {
+            --color-light: #e7a698;
+            --color-base: #da7762;
+            --color-dark: #d05840;
+        }
+
+        .starpieces {
+            --color-light: #ebd193;
+            --color-base: #e6c576;
+            --color-dark: #c29323;
+        }
+
+        .shinesprites {
+            --color-light: #9abce5;
+            --color-base: #558ed3;
+            --color-dark: #2f6cb6;
+        }
+
+        .free-purple {
+            --color-light: #bfb2cd;
+            --color-base: #876fa1;
+            --color-dark: #bfb2cd;
+        }
+
+        html {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+        }
+
+        body {
+            background-image: url('/static/background_1.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            min-height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            margin-top: 3.5em;
+            padding: 1em;
+        }
+
+        .list-container {
+            background-image: url('/static/items_background3.png');
+            background-size: 200px;
+            background-color: var(--color-base);
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        }
+
+        .list {
+            list-style-type: none;
+            margin: 0;
+            background-image: url('/static/items_background3.png');
+            background-position: -10px -10px;
+            background-size: 200px;
+            padding: 1em;
+            border-radius: 10px;
+            background-color: var(--color-light);
+        }
+
+        .list li {
+            display: inline-block;
+        }
+
+        nav {
+            position: absolute;
+            padding: 0 2em;
+            top: 0;
+        }
+
+        nav .nav-section {
+            position: relative;
+            vertical-align: top;
+            display: inline-block;
+            padding-top: 0.5em;
+            padding-bottom: 0.25em;
+            padding-left: 0.25em;
+            padding-right: 0.25em;
+            background-color: var(--color-dark);
+            background-image: linear-gradient(to right, var(--color-base), var(--color-dark));
+            border-radius: 0 0 20px 20px;
+            color: white;
+            font-weight: bolder;
+            font-size: 24px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+        }
+
+        nav .nav-section::after {
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            background-image: url('/static/veil_effect.png');
+            border-radius: 0 0 20px 20px;
+        }
+
+        nav .nav-section.active {
+            background-image: linear-gradient(to right, var(--color-light), var(--color-dark));
+            padding-top: 1.25em;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        }
+
+        nav a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a id="default-section" class="nav-section badges" href="#badges">
+            <item-sprite src="/assets/menu.png" size="100" index="0" scale="0.5"></item-sprite>
+        </a>
+        <a class="nav-section recipes" href="#recipes">
+            <item-sprite src="/assets/menu.png" size="100" index="1" scale="0.5"></item-sprite>
+        </a>
+        <a class="nav-section starpieces" href="#starpieces">
+            <item-sprite src="/assets/menu.png" size="100" index="2" scale="0.5"></item-sprite>
+        </a>
+        <a class="nav-section shinesprites" href="#shinesprites">
+            <item-sprite src="/assets/menu.png" size="100" index="3" scale="0.5"></item-sprite>
+        </a>
+    </nav>
+    <main>
+        <div class="list-container badges">
+            <ul class="list">
+            </ul>
+        </div>
+    </main>
+
+    <script src="/js/sprite.js"></script>
+    <script>
+        const getCurrentListId = () => {
+            const hash = window.location.hash ?? '';
+        };
+
+        const updateSectionNav = () => {
+            const hash = window.location.hash ?? '';
+            const sections = document.querySelectorAll('.nav-section');
+            let one = false;
+            for (const section of sections) {
+                if (section.getAttribute('href') === hash) {
+                    one = true;
+                    section.classList.add('active');
+                }
+                else {
+                    section.classList.remove('active');
+                }
+            }
+
+            if (!one) {
+                document.getElementById('default-section').classList.add('active');
+            }
+        };
+        window.addEventListener('hashchange', updateSectionNav);
+        updateSectionNav();
+
+        (async () => {
+            const datasrc = document.getElementById('datasrc').href;
+            const imgsrc = document.getElementById('imgsrc').href;
+
+            const imgPromise = new Promise(function (res, rej) {
+                const spritesheet = new Image();
+                spritesheet.src = imgsrc;
+                spritesheet.onload = () => res(spritesheet);
+                spritesheet.onerror = rej;
+            });
+
+            const [spritesheet, data] = await Promise.all([
+                imgPromise,
+                fetch(datasrc).then((r) => r.json())
+            ]);
+
+            const list = document.querySelector('.list');
+            let i = 0;
+            for (const el of data) {
+                const sprite = document.createElement('item-sprite');
+                sprite.setAttribute('src', imgsrc);
+                sprite.setAttribute('size', 100);
+                sprite.setAttribute('index', i);
+                sprite.setAttribute('scale', '0.5');
+                const listEl = document.createElement('li');
+                listEl.appendChild(sprite);
+                list.appendChild(listEl);
+                i++;
+            }
+        })()
+    </script>
+</body>
+
+</html>
