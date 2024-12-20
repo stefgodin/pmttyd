@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>PMTTYD - Badges</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link id="badgedata" rel="preload" href="/assets/badges.json" as="fetch" crossorigin="anonymous">
+    <link id="badgesprite" rel="preload" href="/assets/badges.png" as="image">
+    <link id="itemdata" rel="preload" href="/assets/items.json" as="fetch" crossorigin="anonymous">
+    <link id="itemsprite" rel="preload" href="/assets/items.png" as="image">
+
+    <style>
+        :root {
+            --color-light: white;
+            --color-base: grey;
+            --color-dark: black;
+
+            font-family: Verdana, sans-serif;
+        }
+
+        .badges {
+            --color-light: #c5fd81;
+            --color-base: #41de30;
+            --color-dark: #259a19;
+        }
+
+        .recipes {
+            --color-light: #e39bbf;
+            --color-base: #da7aaa;
+            --color-dark: #b43273;
+        }
+
+        .free-red {
+            --color-light: #e7a698;
+            --color-base: #da7762;
+            --color-dark: #d05840;
+        }
+
+        .starpieces {
+            --color-light: #ebd193;
+            --color-base: #e6c576;
+            --color-dark: #c29323;
+        }
+
+        .shinesprites {
+            --color-light: #9abce5;
+            --color-base: #558ed3;
+            --color-dark: #2f6cb6;
+        }
+
+        .tattlelog {
+            --color-light: #bfb2cd;
+            --color-base: #876fa1;
+            --color-dark: #59476c;
+        }
+
+        html {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+        }
+
+        body {
+            background-image: url('/static/background_1.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            min-height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            margin-top: 3.5em;
+            padding: 1em;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .list-container {
+            background-image: url('/static/items_background3.png');
+            background-size: 200px;
+            background-color: var(--color-base);
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        }
+
+        .list {
+            list-style-type: none;
+            margin: 0;
+            background-image: url('/static/items_background3.png');
+            background-position: -10px -10px;
+            background-size: 200px;
+            padding: 1em;
+            border-radius: 10px;
+            background-color: var(--color-light);
+        }
+
+        .list li {
+            display: inline-block;
+        }
+
+        nav {
+            position: absolute;
+            padding: 0 2em;
+            top: 0;
+        }
+
+        nav .nav-section {
+            position: relative;
+            vertical-align: top;
+            display: inline-block;
+            padding-top: 0.5em;
+            padding-bottom: 0.25em;
+            padding-left: 0.25em;
+            padding-right: 0.25em;
+            background-color: var(--color-dark);
+            background-image: linear-gradient(to right, var(--color-base), var(--color-dark));
+            border-radius: 0 0 20px 20px;
+            color: white;
+            font-weight: bolder;
+            font-size: 24px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+        }
+
+        nav .nav-section::after {
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            background-image: url('/static/veil_effect.png');
+            border-radius: 0 0 20px 20px;
+        }
+
+        nav .nav-section.active {
+            background-image: linear-gradient(to right, var(--color-light), var(--color-dark));
+            padding-top: 1.25em;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        }
+
+        nav a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a class="nav-section badges" href="#badges" title="Badges">
+            <item-sprite src="/assets/menu.png" size="100" index="0" scale="0.5"></item-sprite>
+        </a>
+        <a class="nav-section recipes" href="#recipes" title="Recipes">
+            <item-sprite src="/assets/menu.png" size="100" index="1" scale="0.5"></item-sprite>
+        </a>
+        <a class="nav-section starpieces" href="#starpieces" title="Star Pieces">
+            <item-sprite src="/assets/menu.png" size="100" index="2" scale="0.5"></item-sprite>
+        </a>
+        <a class="nav-section shinesprites" href="#shinesprites" title="Shine Sprites">
+            <item-sprite src="/assets/menu.png" size="100" index="3" scale="0.5"></item-sprite>
+        </a>
+        <a class="nav-section tattlelog" href="#tattlelog" title="Tattle Log">
+            <item-sprite src="/assets/menu.png" size="100" index="4" scale="0.5"></item-sprite>
+        </a>
+    </nav>
+    <main>
+        <div class="list-container badges">
+            <template id="badge-item-tpl">
+                <li>
+                    <a href="" title="">
+                        <item-sprite src="/assets/badges.png" size="100" index="" scale="0.5"></item-sprite>
+                    </a>
+                </li>
+            </template>
+            <ul class="list"></ul>
+        </div>
+        <div class="list-container recipes">
+            <template id="recipe-item-tpl">
+                <li>
+                    <a href="" title="">
+                        <item-sprite src="/assets/items.png" size="100" index="" scale="0.5"></item-sprite>
+                    </a>
+                </li>
+            </template>
+            <ul class="list"></ul>
+        </div>
+        <div class="list-container starpieces">
+            <ul class="list">
+                <li>Comming Soon</li>
+            </ul>
+        </div>
+        <div class="list-container shinesprites">
+            <ul class="list">
+                <li>Comming Soon</li>
+            </ul>
+        </div>
+        <div class="list-container tattlelog">
+            <ul class="list">
+                <li>Comming Soon</li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="/js/sprite.js"></script>
+    <script>
+        (() => {
+            const SECTIONS = {
+                BADGES: "badges",
+                RECIPES: "recipes",
+                STARPIECES: "starpieces",
+                SHINESPRITES: "shinesprites",
+                TATTLELOG: "tattlelog",
+            };
+
+            function getSectionFromHash() {
+                const sectionId = (window.location.hash ?? '').replace('#', '').split(':')[0];
+                return Object.values(SECTIONS).includes(sectionId) ? sectionId : SECTIONS.BADGES;
+            }
+
+            function getItemIdFromHash() {
+                const id = parseInt((window.location.hash ?? '').split(':')[1] ?? 0)
+                return isNaN(id) ? 0 : id;
+            }
+
+            function updateContent() {
+                const sectionId = getSectionFromHash();
+                updateNav(sectionId);
+                updateLists(sectionId);
+            };
+
+            function updateNav(sectionId) {
+                const sections = document.querySelectorAll('.nav-section');
+                for (const sectionEl of sections) {
+                    if (sectionEl.classList.contains(sectionId)) {
+                        sectionEl.classList.add('active');
+                    }
+                    else {
+                        sectionEl.classList.remove('active');
+                    }
+                }
+            };
+
+            function updateLists(sectionId) {
+                const listContainers = document.querySelectorAll('.list-container');
+                for (const listContainerEl of listContainers) {
+                    if (listContainerEl.classList.contains(sectionId)) {
+                        listContainerEl.classList.remove('hidden');
+                    }
+                    else {
+                        listContainerEl.classList.add('hidden');
+                    }
+                }
+            };
+
+            async function loadBadgeList() {
+                const datasrc = document.getElementById('badgedata').href;
+                const imgsrc = document.getElementById('badgesprite').href;
+
+                const data = await fetch(datasrc).then((r) => r.json());
+
+                const list = document.querySelector('.list-container.badges .list');
+                while (list.firstChild) {
+                    list.firstChild.remove();
+                }
+
+                const badgeItemTpl = document.getElementById('badge-item-tpl');
+                let i = 0;
+                for (const badge of data) {
+                    const el = badgeItemTpl.content.cloneNode(true);
+                    el.querySelector('item-sprite').setAttribute('index', i);
+                    const link = el.querySelector('a');
+                    link.setAttribute('href', `#badges:${badge.id}`);
+                    link.setAttribute('title', badge.name);
+                    list.appendChild(el);
+                    i++;
+                }
+            }
+
+            async function loadRecipeList() {
+                const datasrc = document.getElementById('itemdata').href;
+                const imgsrc = document.getElementById('itemsprite').href;
+
+                const data = (await fetch(datasrc).then((r) => r.json()));
+
+
+                const list = document.querySelector('.list-container.recipes .list');
+                while (list.firstChild) {
+                    list.firstChild.remove();
+                }
+
+                const recipeItemTpl = document.getElementById('recipe-item-tpl');
+                let i = 0;
+                for (const recipe of data) {
+                    if (recipe.id > 0) {
+                        const el = recipeItemTpl.content.cloneNode(true);
+                        el.querySelector('item-sprite').setAttribute('index', i);
+                        const link = el.querySelector('a');
+                        link.setAttribute('href', `#recipes:${recipe.id ?? 0}`);
+                        link.setAttribute('title', recipe.name);
+                        list.appendChild(el);
+                    }
+                    i++;
+                }
+            }
+
+            // Initialization
+            loadBadgeList();
+            loadRecipeList();
+            updateContent();
+
+            window.addEventListener('hashchange', updateContent);
+        })();
+    </script>
+</body>
+
+</html>
