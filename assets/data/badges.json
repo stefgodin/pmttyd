@@ -2,42 +2,42 @@
 	{
 		"name": "Power Jump",
 		"bp": 1,
-		"locations": "Lovely Howz of Badges (50 coins) Pianta Parlor (34  / 80  Piantas after getting Special Card) Dropped by Goombas, Gloombas, Buzzy Beetles, Spike Tops",
+		"locations": "Lovely Howz of Badges (50 coins)\n Pianta Parlor (80 Piantas after getting Special Card)\n Dropped by Goombas, Gloombas, Buzzy Beetles, Spike Tops",
 		"effect": "Allows Mario to use Power Jump, a powerful one-hit jump attack, for 2 FP. Each additional Power Jump badge worn doubles the FP cost and increases the attack power by 2.",
 		"id": 1
 	},
 	{
 		"name": "Multibounce",
 		"bp": 1,
-		"locations": "Shhwonk Fortress Pianta Parlor (50  / 100  Piantas after getting Silver Card) Dropped by Paragoombas, Paragloombas, Dark Paratroopas , Parabuzzies, Swoopulas, Swampires",
+		"locations": "Shhwonk Fortress\n Pianta Parlor (50  / 100  Piantas after getting Silver Card)\n Dropped by Paragoombas, Paragloombas, Dark Paratroopas , Parabuzzies, Swoopulas, Swampires",
 		"effect": "Allows Mario to use Multibounce, a jump attack that hits each available enemy consecutively, for 2 FP.",
 		"id": 2
 	},
 	{
 		"name": "Shrink Stomp",
 		"bp": 1,
-		"locations": "Lovely Howz of Badges (75 coins after Chapter 3) The Great Tree Dropped by Buzzy Beetles, Spike Tops, X-Nauts",
+		"locations": "Lovely Howz of Badges (75 coins after Chapter 3)\n The Great Tree\n Dropped by Buzzy Beetles, Spike Tops, X-Nauts",
 		"effect": "Allows Mario to use Shrink Stomp, a jump attack that can shrink the enemy for 3 turns, for 2 FP. Additional badges double the FP cost and add 2 turns to the effect.",
 		"id": 3
 	},
 	{
 		"name": "Sleepy Stomp",
 		"bp": 1,
-		"locations": "Lovely Howz of Badges (75 coins after Chapter 1) Pit of 100 Trials (Floor 10) Dropped by Fuzzies, Dark Puffs, Boos",
+		"locations": "Lovely Howz of Badges (75 coins after Chapter 1)\n Pit of 100 Trials (Floor 10)\n Dropped by Fuzzies, Dark Puffs, Boos",
 		"effect": "Allows Mario to use Sleepy Stomp, a jump attack that can put the enemy to sleep for 5 turns (3 in the remake), for 2 FP. Additional badges add 2 FP to the cost and 2 turns to the effect.",
 		"id": 4
 	},
 	{
 		"name": "Soft Stomp",
 		"bp": 1,
-		"locations": "Rogueport Underground Lovely Howz of Badges (75 coins after Chapter 4) Dropped by Spiky Goombas, Spiky Gloombas, Ice Puffs",
+		"locations": "Rogueport Underground\n Lovely Howz of Badges (75 coins after Chapter 4)\n Dropped by Spiky Goombas, Spiky Gloombas, Ice Puffs",
 		"effect": "Allows Mario to use Soft Stomp, a jump attack that reduces the enemy's defense by 3 for 3 turns, for 2 FP. Additional badges add 2 FP to the cost and 2 turns to the effect.",
 		"id": 5
 	},
 	{
 		"name": "Tornado Jump",
 		"bp": 2,
-		"locations": "Creepy Steeple Pianta Parlor (67  / 150  Piantas after getting Gold Card) Dropped by all Lakitu types, Ruff Puffs",
+		"locations": "Creepy Steeple\n Pianta Parlor (67  / 150  Piantas after getting Gold Card)\n Dropped by all Lakitu types, Ruff Puffs",
 		"effect": "Allows Mario to use Tornado Jump, a jump attack that jumps on one enemy and then damages all midair enemies, for 3 FP. Each additional Power Jump badge worn doubles the FP, and adds 1 to the jump’s damage and 2 to the tornado’s.",
 		"id": 6
 	},
@@ -51,273 +51,273 @@
 	{
 		"name": "Power Smash",
 		"bp": 1,
-		"locations": "Given by Professor Frankly Pianta Parlor (34  / 80  Piantas after getting Silver Card) Dropped by Buzzy Beetles, Spike Tops, all Spinia types",
+		"locations": "Given by Professor Frankly\n Pianta Parlor (80  Piantas after getting Silver Card)\n Dropped by Buzzy Beetles, Spike Tops, all Spinia types",
 		"effect": "Allows Mario to use Power Smash, a powerful hammer attack, for 2 FP. Each additional Power Smash badge worn doubles the FP cost and increases the attack power by 2.",
 		"id": 8
 	},
 	{
 		"name": "Piercing Blow",
 		"bp": 1,
-		"locations": "Lovely Howz of Badges (75 coins) Dropped by Spiky Parabuzzies (but is not stackable!)",
-		"effect": "Allows Mario to use Piercing Blow, a hammer attack that ignores enemies' defense, for 2 FP.1",
+		"locations": "Lovely Howz of Badges (75 coins)\n Dropped by Spiky Parabuzzies",
+		"effect": "Allows Mario to use Piercing Blow, a hammer attack that ignores enemies' defense, for 2 FP. Not stackable.",
 		"id": 9
 	},
 	{
 		"name": "Hammer Throw",
 		"bp": 1,
-		"locations": "Twilight Trail Pianta Parlor (50  / 120  Piantas after getting Gold Card) Dropped by Hammer Bros, all Swooper types",
+		"locations": "Twilight Trail\n Pianta Parlor (120  Piantas after getting Gold Card)\n Dropped by Hammer Bros, all Swooper types",
 		"effect": "Allows Mario to use Hammer Throw, a hammer attack that can hit any enemy without approaching, for 2 FP. In the original, its base damage depends on Mario's current hammer. In the remake, it instead always deals 2 base damage regardless of his hammer but also ignores defense. Each additional Hammer Throw badge worn doubles the FP cost and increases the attack power by 1.",
 		"id": 10
 	},
 	{
 		"name": "Head Rattle",
 		"bp": 1,
-		"locations": "Keelhaul Key Lovely Howz of Badges (100 coins after Chapter 4) Dropped by Fuzzies, Ruff Puffs, Bob-ombs",
+		"locations": "Keelhaul Key\n Lovely Howz of Badges (100 coins after Chapter 4)\n Dropped by Fuzzies, Ruff Puffs, Bob-ombs",
 		"effect": "Allows Mario to use Head Rattle, a hammer attack that confuses the target for 3 turns, for 2 FP. Additional badges double the FP cost and add 2 turns to the effect.",
 		"id": 11
 	},
 	{
 		"name": "Ice Smash",
 		"bp": 1,
-		"locations": "Creepy Steeple (in secret room, use Tube Mode near the opening door) Lovely Howz of Badges (75 coins after Chapter 3) Dropped by Parabuzzies, Frost Piranhas, Ice Puffs, Poison Puffs",
+		"locations": "Creepy Steeple (in secret room, use Tube Mode near the opening door)\n Lovely Howz of Badges (75 coins after Chapter 3)\n Dropped by Parabuzzies, Frost Piranhas, Ice Puffs, Poison Puffs",
 		"effect": "Allows Mario to use Ice Smash, a hammer attack that freezes the target for 2 turns, for 3 FP. Additional badges double the FP cost and add 2 turns to the effect.",
 		"id": 12
 	},
 	{
 		"name": "Quake Hammer",
 		"bp": 2,
-		"locations": "Boggly Woods Pianta Parlor (67  / 150  Piantas after getting Platinum Card) Dropped by Parabuzzies, Spiky Parabuzzies, Clefts, Moon Clefts",
+		"locations": "Boggly Woods\n Pianta Parlor (150  Piantas after getting Platinum Card)\n Dropped by Parabuzzies, Spiky Parabuzzies, Clefts, Moon Clefts",
 		"effect": "Allows Mario to use Quake Hammer, a hammer attack that deals 2 damage to all grounded and ceiling enemies, for 3 FP. Additional badges each double the FP cost and add 2 to the attack’s power.",
 		"id": 13
 	},
 	{
 		"name": "Fire Drive",
 		"bp": 3,
-		"locations": "Pit of 100 Trials (Floor 20) Lovely Howz of Badges (100 coins after Chapter 5) Dropped by Koopatrols, all Ember/Bubble types",
+		"locations": "Pit of 100 Trials (Floor 20)\n Lovely Howz of Badges (100 coins after Chapter 5)\n Dropped by Koopatrols, all Ember/Bubble types",
 		"effect": "Allows Mario to use Fire Drive, a hammer attack that damages and burns all ground and low-hovering enemies for 3 turns, for 5 FP. The first enemy hit takes 5 damage, while each subsequent enemy takes 1 less damage. Due to being a fire attack, it will heal fiery enemies. Additional badges double FP cost and add 2 attack power; the Burn status’s duration is unaffected.",
 		"id": 14
 	},
 	{
 		"name": "Charge",
 		"bp": 1,
-		"locations": "The Great Tree Dropped by Hyper Goombas, Hyper Paragoombas, Hyper Clefts",
+		"locations": "The Great Tree\n Dropped by Hyper Goombas, Hyper Paragoombas, Hyper Clefts",
 		"effect": "Allows Mario to use Charge, which takes a turn to increase the damage of Mario's next attack by 2, for 1 FP. Each additional Charge badge worn doubles the FP cost and increases the charge power by 1.",
 		"id": 15
 	},
 	{
 		"name": "Charge P",
 		"bp": 1,
-		"locations": "Glitz Pit storage room Dropped by Hyper Spiky Goombas, Hyper Clefts",
+		"locations": "Glitz Pit storage room\n Dropped by Hyper Spiky Goombas, Hyper Clefts",
 		"effect": "Allows Mario's partner to use Charge, which takes a turn to increase the damage of their next attack by 2, for 1 FP. Each additional Charge badge worn doubles the FP cost and increases the charge power by 1.",
 		"id": 16
 	},
 	{
 		"name": "Double Dip",
 		"bp": 3,
-		"locations": "Rogueport (use Boat Panel behind Trouble Center) Pit of 100 Trials (Floor 60)",
+		"locations": "Rogueport (use Boat Panel behind Trouble Center)\n Pit of 100 Trials (Floor 60)",
 		"effect": "Allows Mario to use Double Dip for 4 FP to use two items in one turn. Wearing both Double Dip badges also allows Mario to use Triple Dip for 8 FP to use three items in one turn.",
 		"id": 17
 	},
 	{
 		"name": "Double Dip P",
 		"bp": 3,
-		"locations": "Fahr Outpost (hidden block in first area) Pit of 100 Trials (Floor 70)",
+		"locations": "Fahr Outpost (hidden block in first area)\n Pit of 100 Trials (Floor 70)",
 		"effect": "Allows Mario's partner to use Double Dip P for 4 FP to use two items in one turn. Wearing both Double Dip P badges also allows Mario's partner to use Triple Dip P for 8 FP to use three items in one turn.",
 		"id": 18
 	},
 	{
 		"name": "HP Plus",
 		"bp": 3,
-		"locations": "Hooktail Castle (use Koops under bridge) Riverside Station (use Tube Mode to roll under first step outside) Pianta Parlor (100  / 150  Piantas after getting Special Card) Steal from all Gloomba types, Dark Paratroopas , X-Nauts Dropped by Dull Bones, Dry Bones",
+		"locations": "Hooktail Castle (use Koops under bridge)\n Riverside Station (use Tube Mode to roll under first step outside)\n Pianta Parlor (150  Piantas after getting Special Card)\n Steal from all Gloomba types, Dark Paratroopas, X-Nauts\n Dropped by Dull Bones, Dry Bones",
 		"effect": "Increases Mario's maximum HP by 5 while equipped.",
 		"id": 19
 	},
 	{
 		"name": "HP Plus P",
 		"bp": 6,
-		"locations": "Glitz Pit storage room Fahr Outpost Pianta Parlor (200  / 160  Piantas after getting Silver Card) Steal from all Gloomba types, Dark Paratroopas , Magikoopas",
+		"locations": "Glitz Pit storage room\n Fahr Outpost Pianta Parlor (160  Piantas after getting Silver Card)\n Steal from all Gloomba types, Dark Paratroopas, Magikoopas",
 		"effect": "Increases the maximum HP of all Mario's partners by 5 while equipped.",
 		"id": 20
 	},
 	{
 		"name": "FP Plus",
 		"bp": 3,
-		"locations": "Outside the Great Tree Rogueport Underground Pianta Parlor (100  / 150  Piantas after getting the Special Card) Dropped by Poison Pokeys, Pale Piranhas, Putrid Piranhas, X-Nauts",
+		"locations": "Outside the Great Tree\n Rogueport Underground\n Pianta Parlor (150  Piantas after getting the Special Card)\n Dropped by Poison Pokeys, Pale Piranhas, Putrid Piranhas, X-Nauts",
 		"effect": "Increases Mario's maximum FP by 5 while equipped.",
 		"id": 21
 	},
 	{
 		"name": "Power Plus",
 		"bp": 6,
-		"locations": "Creepy Steeple (in box in room with parrot) Dazzle (15 star pieces) Match all 4 numbers  / last 3 numbers  in the Happy Lucky Lottery Steal from Dark Wizzerds, Elite Wizzerds",
+		"locations": "Creepy Steeple (in box in room with parrot)\n Dazzle (15 star pieces)\n Match last 3 numbers in the Happy Lucky Lottery\n Steal from Dark Wizzerds, Elite Wizzerds",
 		"effect": "Increases Mario's attack power by 1.",
 		"id": 22
 	},
 	{
 		"name": "Power Plus P",
 		"bp": 6,
-		"locations": "Glitzville (on top of juice bar in chest) Dazzle (15 star pieces) Rogueport Underground (hidden block on the roof of Herb T.'s building)  Steal from Dark Wizzerds, Elite Wizzerds",
+		"locations": "Glitzville (on top of juice bar in chest)\n Dazzle (15 star pieces)\n Rogueport Underground (hidden block on the roof of Herb T.'s building)\n  Steal from Dark Wizzerds, Elite Wizzerds",
 		"effect": "Increases the attack power of Mario's partner by 1.",
 		"id": 23
 	},
 	{
 		"name": "All or Nothing",
 		"bp": 4,
-		"locations": "Palace of Shadow Dropped by Dark Craws, Arantulas",
+		"locations": "Palace of Shadow\n Dropped by Dark Craws, Arantulas",
 		"effect": "Mario's jump and hammer attack power will go up by 1 if he successfully executes the Action Command. If not, the attack will do nothing.",
 		"id": 24
 	},
 	{
 		"name": "Jumpman",
 		"bp": 2,
-		"locations": "Charlieton (180  / 240  coins) Dropped by Poison Puffs, Wizzerds",
+		"locations": "Charlieton (240 coins)\n Dropped by Poison Puffs, Wizzerds",
 		"effect": "Boosts the power of all Mario's jump attacks by 1, but disables Mario's ability to hammer in battle.",
 		"id": 25
 	},
 	{
 		"name": "Hammerman",
 		"bp": 2,
-		"locations": "Charlieton (180  / 240  coins) Dropped by Dark Bristles, Wizzerds",
+		"locations": "Charlieton (240  coins)\n Dropped by Dark Bristles, Wizzerds",
 		"effect": "Boosts the power of all Mario's hammer attacks by 1, but disables Mario's ability to jump in battle.",
 		"id": 26
 	},
 	{
 		"name": "P-Up, D-Down",
 		"bp": 2,
-		"locations": "Riverside Station Steal from Dark Koopatrols, Elite X-Nauts",
+		"locations": "Riverside Station\n Steal from Dark Koopatrols, Elite X-Nauts",
 		"effect": "Raises the damage Mario deals by 1, but also raises the damage he takes by 1.",
 		"id": 27
 	},
 	{
 		"name": "P-Up, D-Down P",
 		"bp": 2,
-		"locations": "Palace of Shadow Steal from Dark Koopatrols, Elite X-Nauts",
+		"locations": "Palace of Shadow\n Steal from Dark Koopatrols, Elite X-Nauts",
 		"effect": "Raises the damage Mario's partners deal by 1, but also raises the damage they take by 1.",
 		"id": 28
 	},
 	{
 		"name": "P-Down, D-Up",
 		"bp": 2,
-		"locations": "Pirate's Grotto (behind Black Chest) Steal from Dark Craws and X-Naut PhDs",
+		"locations": "Pirate's Grotto (behind Black Chest)\n Steal from Dark Craws and X-Naut PhDs",
 		"effect": "Lowers the damage Mario takes by 1, but also lowers the damage he deals by 1. The effect is not a boost to Defense, and so overrides piercing attacks.",
 		"id": 29
 	},
 	{
 		"name": "P-Down, D-Up P",
 		"bp": 2,
-		"locations": "Boggly Woods (hidden block in Plane Panel area) Steal from Dark Craws and X-Naut PhDs",
+		"locations": "Boggly Woods (hidden block in Plane Panel area)\n Steal from Dark Craws and X-Naut PhDs",
 		"effect": "Lowers the damage Mario's partners take by 1, but also lowers the damage they deal by 1. The effect is not a boost to Defense, and so overrides piercing attacks.",
 		"id": 30
 	},
 	{
 		"name": "Damage Dodge",
 		"bp": 2,
-		"locations": "Rogueport Underground Lovely Howz of Badges (150 coins after Chapter 4) Steal from Red Chomps Dropped by Bob-ombs, Bulky Bob-ombs",
+		"locations": "Rogueport Underground\n Lovely Howz of Badges (150 coins after Chapter 4)\n Steal from Red Chomps\n Dropped by Bob-ombs, Bulky Bob-ombs",
 		"effect": "Increases the amount of damage blocked by Mario's Guard by 1.",
 		"id": 31
 	},
 	{
 		"name": "Damage Dodge P",
 		"bp": 2,
-		"locations": "The Great Tree (in room between Jabbi rooms, use Koops to reveal a block to jump on to reveal badge) Lovely Howz of Badges (150 coins after Chapter 5) Pirate's Grotto (sail behind waterfall)* Steal from Red Chomps Dropped by Bob-ombs, Bulky Bob-ombs",
+		"locations": "The Great Tree (in room between Jabbi rooms, use Koops to reveal a block to jump on to reveal badge)\n Lovely Howz of Badges (150 coins after Chapter 5)\n Steal from Red Chomps\n Dropped by Bob-ombs, Bulky Bob-ombs",
 		"effect": "Increases the amount of damage blocked by the Guard of Mario's partner by 1.",
 		"id": 32
 	},
 	{
 		"name": "Defend Plus",
 		"bp": 5,
-		"locations": "Twilight Town Rogueport Underground Steal from Chain Chomps, Bob-ulks",
+		"locations": "Twilight Town\n Rogueport Underground\n Steal from Chain Chomps, Bob-ulks",
 		"effect": "Increases Mario's defense by 1.",
 		"id": 33
 	},
 	{
 		"name": "Defend Plus P",
 		"bp": 5,
-		"locations": "Rogueport Underground Pirate's Grotto (sail behind waterfall)* Steal from Chain Chomps, Bob-ulks",
+		"locations": "Rogueport Underground\n Pirate's Grotto (sail behind waterfall)\n Steal from Chain Chomps, Bob-ulks",
 		"effect": "Increases the defense of Mario's partner by 1.",
 		"id": 34
 	},
 	{
 		"name": "Double Pain",
 		"bp": 0,
-		"locations": "Charlieton (36  / 60  coins)",
+		"locations": "Charlieton (60  coins)",
 		"effect": "Doubles the damage Mario takes.",
 		"id": 35
 	},
 	{
 		"name": "Power Rush",
 		"bp": 1,
-		"locations": "Lovely Howz of Badges (50 coins after Chapter 2) Pianta Parlor (34  / 100  Piantas after getting Gold Card) Steal from Paratroopas, Shady Koopas",
+		"locations": "Lovely Howz of Badges (50 coins after Chapter 2)\n Pianta Parlor (100  Piantas after getting Gold Card)\n Steal from Paratroopas, Shady Koopas",
 		"effect": "When Mario is in Danger (has 5 or fewer HP), his attack power will go up by 2. A popular strategy involving this badge involves buying and equipping a very large amount of them (e.g. more than 20) and using Chet Rippo to decrease Mario's maximum HP to 5, therefore giving him a permanent attack boost of huge proportions. Wearing 50 of this badge at once will cap Mario's attack power at 99.",
 		"id": 36
 	},
 	{
 		"name": "Power Rush P",
 		"bp": 1,
-		"locations": "Lovely Howz of Badges (50 coins after Chapter 3) Pianta Parlor (34  / 100  Piantas after getting Gold Card) Steal from Koopa Troopas, Shady Paratroopas",
+		"locations": "Lovely Howz of Badges (50 coins after Chapter 3)\n Pianta Parlor (100 Piantas after getting Gold Card)\n Steal from Koopa Troopas, Shady Paratroopas",
 		"effect": "When Mario's partner is in Danger (5 or fewer HP), their attack power will go up by 2.",
 		"id": 37
 	},
 	{
 		"name": "Last Stand",
 		"bp": 1,
-		"locations": "Glitz Pit hallway Lovely Howz of Badges (50 coins) Steal from all Hyper Goomba types, Green Fuzzies",
+		"locations": "Glitz Pit hallway\n Lovely Howz of Badges (50 coins)\n Steal from all Hyper Goomba types, Green Fuzzies",
 		"effect": "When Mario is in Danger (5 or less HP), he will only receive half as much damage as normal, rounded up. Equipping more than one divides the damage by the number equipped plus one, rounded up.",
 		"id": 38
 	},
 	{
 		"name": "Last Stand P",
 		"bp": 1,
-		"locations": "Hooktail Castle Lovely Howz of Badges (50 coins) Steal from all Hyper Goomba types, Flower Fuzzies",
+		"locations": "Hooktail Castle\n Lovely Howz of Badges (50 coins)\n Steal from all Hyper Goomba types, Flower Fuzzies",
 		"effect": "When Mario's partner is in Danger (5 or less HP), they will only receive half as much damage as normal, rounded up. Equipping more than one divides the damage by the number equipped plus one, rounded up.",
 		"id": 39
 	},
 	{
 		"name": "Mega Rush",
 		"bp": 1,
-		"locations": "Charlieton (60  / 96  coins) Steal from Hammer Bros., Dark Paratroopas , Red Magikoopas",
+		"locations": "Charlieton (96  coins)\n Steal from Hammer Bros., Dark Paratroopas, Red Magikoopas",
 		"effect": "When Mario is in Peril (has precisely 1 HP), his attack power goes up by 5.",
 		"id": 40
 	},
 	{
 		"name": "Mega Rush P",
 		"bp": 1,
-		"locations": "Petalburg (use Paper Mode to reach Mayor Kroop's sideyard) Steal from Hammer Bros., Red Magikoopas",
+		"locations": "Petalburg (use Paper Mode to reach Mayor Kroop's sideyard)\n Steal from Hammer Bros., Red Magikoopas",
 		"effect": "When Mario's partner is in Peril (has precisely 1 HP), their attack power goes up by 5.",
 		"id": 41
 	},
 	{
 		"name": "Close Call",
 		"bp": 1,
-		"locations": "Petal Meadows Lovely Howz of Badges (100 coins after Chapter 1) Steal3 from all Goomba types, Koopatrols",
+		"locations": "Petal Meadows\n Lovely Howz of Badges (100 coins after Chapter 1)\n Steal from all Goomba types, Koopatrols",
 		"effect": "When Mario is in Danger (5 or less HP), enemies will occasionally miss when attacking.",
 		"id": 42
 	},
 	{
 		"name": "Close Call P",
 		"bp": 1,
-		"locations": "Riverside Station Lovely Howz of Badges (100 coins after Chapter 1) Steal from all Goomba types, Koopatrols",
+		"locations": "Riverside Station\n Lovely Howz of Badges (100 coins after Chapter 1)\n Steal from all Goomba types, Koopatrols",
 		"effect": "When Mario's partner is in Danger (5 or less HP), enemies will occasionally miss when attacking.",
 		"id": 43
 	},
 	{
 		"name": "Pretty Lucky",
 		"bp": 2,
-		"locations": "Rogueport Underground (hidden block against south wall opposite Puni hole) Dazzle (3 Star Pieces) Steal from all Spinia types, all Bandit types",
+		"locations": "Rogueport Underground (hidden block against south wall opposite Puni hole)\n Dazzle (3 Star Pieces)\n Steal from all Spinia types, all Bandit types",
 		"effect": "Enemies will occasionally miss Mario when it is equipped.",
 		"id": 44
 	},
 	{
 		"name": "Pretty Lucky P",
 		"bp": 2,
-		"locations": "Lovely Howz of Badges (150 coins after Chapter 2) Steal from all Spinia types, all Bandit types",
+		"locations": "Lovely Howz of Badges (150 coins after Chapter 2)\n Steal from all Spinia types, all Bandit types",
 		"effect": "Enemies will occasionally miss Mario's Partner when it is equipped.",
 		"id": 45
 	},
 	{
 		"name": "Lucky Day",
 		"bp": 7,
-		"locations": "Pit of 100 Trials (Floor 90) Match last 3 numbers  / all 4 numbers  in the Happy Lucky Lottery Dropped by Swampires",
+		"locations": "Pit of 100 Trials (Floor 90)\n Match all 4 numbers in the Happy Lucky Lottery\n Dropped by Swampires",
 		"effect": "Causes enemies' attacks against Mario to miss more frequently than Pretty Lucky.",
 		"id": 46
 	},
@@ -331,84 +331,84 @@
 	{
 		"name": "Happy Heart",
 		"bp": 2,
-		"locations": "Petal Meadows Dazzle (4 Star Pieces) Steal from Koopa Troopas, Shady Koopas, Dark Koopas",
+		"locations": "Petal Meadows\n Dazzle (4 Star Pieces)\n Steal from Koopa Troopas, Shady Koopas, Dark Koopas",
 		"effect": "Slowly and automatically regains Mario's HP in battle.",
 		"id": 48
 	},
 	{
 		"name": "Happy Heart P",
 		"bp": 2,
-		"locations": "Rogueport Underground Dazzle (4 Star Pieces) Steal from Paratroopas, Dark Paratroopas , Shady Paratroopas",
+		"locations": "Rogueport Underground\n Dazzle (4 Star Pieces)\n Steal from Paratroopas, Dark Paratroopas, Shady Paratroopas",
 		"effect": "Slowly and automatically regains Mario's partner's HP in battle.",
 		"id": 49
 	},
 	{
 		"name": "Happy Flower",
 		"bp": 2,
-		"locations": "Lovely Howz of Badges (150 coins) Dazzle (4 Star Pieces) Dropped by Koopa Troopas, Paratroopas, all Dayzee types",
+		"locations": "Lovely Howz of Badges (150 coins)\n Dazzle (4 Star Pieces)\n Dropped by Koopa Troopas, Paratroopas, all Dayzee types",
 		"effect": "Slowly and automatically regain FP in battle.",
 		"id": 50
 	},
 	{
 		"name": "Flower Saver",
 		"bp": 4,
-		"locations": "Creepy Steeple (under Star Statue in the main room, use Flurrie to uncover the area behind the spring) Dazzle (10 Star Pieces) Dropped by Crazee Dayzees, Amazy Dayzees",
+		"locations": "Creepy Steeple (under Star Statue in the main room, use Flurrie to uncover the area behind the spring)\n Dazzle (10 Star Pieces)\n Dropped by Crazee Dayzees, Amazy Dayzees",
 		"effect": "All abilities cost 1 FP less than they normally would. Does not allow abilities to cost less than 1 FP.",
 		"id": 51
 	},
 	{
 		"name": "Flower Saver P",
 		"bp": 4,
-		"locations": "Rogueport Underground Dazzle (10 Star Pieces) Dropped by Crazee Dayzees, Amazy Dayzees",
+		"locations": "Rogueport Underground\n Dazzle (10 Star Pieces)\n Dropped by Crazee Dayzees, Amazy Dayzees",
 		"effect": "All of Mario's partners' abilities cost 1 FP less than they normally would. Does not allow abilities to cost less than 1 FP.",
 		"id": 52
 	},
 	{
 		"name": "Pity Flower",
 		"bp": 3,
-		"locations": "Pit of 100 Trials (Floor 40) Dropped by Piranha Plants, Arantulas",
+		"locations": "Pit of 100 Trials (Floor 40)\n Dropped by Piranha Plants, Arantulas",
 		"effect": "When Mario takes damage, he occasionally recovers 1 FP. The probability is approximately 33% and is determined for each hit of an attack.",
 		"id": 53
 	},
 	{
 		"name": "HP Drain",
 		"bp": 1,
-		"locations": "Rogueport (use boat panel in harbor) Dropped by Fuzzies, Green Fuzzies, Swoopers",
+		"locations": "Rogueport (use boat panel in harbor)\n Dropped by Fuzzies, Green Fuzzies, Swoopers",
 		"effect": "Reduces Mario's attack power by 1, but he regains 1 HP every time he hits an enemy.",
 		"id": 54
 	},
 	{
 		"name": "HP Drain P",
 		"bp": 1,
-		"locations": "Poshley Heights (in Goldbob's house in secret room accessed using Paper Mode) Dropped by Swoopers, Swoopulas",
+		"locations": "Poshley Heights (in Goldbob's house in secret room accessed using Paper Mode)\n Dropped by Swoopers, Swoopulas",
 		"effect": "Reduces Mario's partner's attack power by 1, but they regain 1 HP every time they hit an enemy.",
 		"id": 55
 	},
 	{
 		"name": "FP Drain",
 		"bp": 1,
-		"locations": "Lovely Howz of Badges (100 coins) Dropped by Flower Fuzzies, Dark Puffs",
+		"locations": "Lovely Howz of Badges (100 coins)\n Dropped by Flower Fuzzies, Dark Puffs",
 		"effect": "Reduces Mario's attack power by 1, but he regains 1 FP every time he hits an enemy.",
 		"id": 56
 	},
 	{
 		"name": "Heart Finder",
 		"bp": 3,
-		"locations": "Dazzle (6 Star Pieces) Dropped by Shady Koopas, Elite X-Nauts",
+		"locations": "Dazzle (6 Star Pieces)\n Dropped by Shady Koopas, Elite X-Nauts",
 		"effect": "The player will win more hearts than usual after winning battles.",
 		"id": 57
 	},
 	{
 		"name": "Flower Finder",
 		"bp": 3,
-		"locations": "Dazzle (6 Star Pieces) Dropped by X-Naut PhDs, Dark Paratroopas",
+		"locations": "Dazzle (6 Star Pieces)\n Dropped by X-Naut PhDs, Dark Paratroopas",
 		"effect": "The player will win more flowers than usual after winning battles.",
 		"id": 58
 	},
 	{
 		"name": "Item Hog",
 		"bp": 3,
-		"locations": "Dazzle (5 Star Pieces) Dropped by Dark Koopatrols, Dull Bones, Dry Bones",
+		"locations": "Dazzle (5 Star Pieces)\n Dropped by Dark Koopatrols, Dull Bones, Dry Bones",
 		"effect": "Makes it more likely to make items appear after battle. Also increases chances of Ms. Mowz stealing an item from an enemy that has had an item, be it used by them or stolen previously.",
 		"id": 59
 	},
@@ -422,7 +422,7 @@
 	{
 		"name": "Spike Shield",
 		"bp": 3,
-		"locations": "Rogueport Underground (need Yoshi Kid to run past (Japanese version only)[1] or Vivian to hide when spikes jump out in the room)",
+		"locations": "Rogueport Underground (need Vivian to hide when spikes jump out in the room)",
 		"effect": "Renders Mario immune to enemies' spike-based defenses, allowing him to safely jump on spiked enemies and hammer Bristles.",
 		"id": 61
 	},
@@ -457,28 +457,28 @@
 	{
 		"name": "Refund",
 		"bp": 1,
-		"locations": "Pianta Parlor (34  / 60  Piantas) Dropped by all Bandit types",
+		"locations": "Pianta Parlor (60  Piantas)\n Dropped by all Bandit types",
 		"effect": "If the player uses an item in battle, Mario will be given some coins back. 75% of standard sale price with the first badge, and an extra 5% with each subsequent badge equipped.",
 		"id": 66
 	},
 	{
 		"name": "Money Money",
 		"bp": 5,
-		"locations": "Pianta Parlor (234  / 450  Piantas after getting Platinum Card) The Creepy Steeple Boo (after completing all quizzes)  Dropped by Dark Boos, all Bill Blaster types",
+		"locations": "Pianta Parlor (450  Piantas after getting Platinum Card)\n The Creepy Steeple Boo (after completing all quizzes)\n Dropped by Dark Boos, all Bill Blaster types",
 		"effect": "Mario wins twice as many coins from battle than he usually does. Additional copies worn increase the multiplier by 1× each, but there is a maximum limit of 32  / 99  coins as to how many can be in the field at once (based on the presence of other items and pickups).",
 		"id": 67
 	},
 	{
 		"name": "Super Appeal",
 		"bp": 1,
-		"locations": "Lovely Howz of Badges (50 coins) Pianta Parlor (34  / 60  Piantas) Dropped by all Lakitu types, Magikoopas, all Boo types",
+		"locations": "Lovely Howz of Badges (50 coins)\n Pianta Parlor (60  Piantas)\n Dropped by all Lakitu types, Magikoopas, all Boo types",
 		"effect": "Gets more star power from the audience when Mario appeals.",
 		"id": 68
 	},
 	{
 		"name": "Super Appeal P",
 		"bp": 1,
-		"locations": "Lovely Howz of Badges (50 coins after Chapter 5) Flurrie's bedroom Dropped by all Lakitu types, Magikoopas, all Boo types",
+		"locations": "Lovely Howz of Badges (50 coins after Chapter 5)\n Flurrie's bedroom\n Dropped by all Lakitu types, Magikoopas, all Boo types",
 		"effect": "Gets more star power from the audience when Mario's partner appeals.",
 		"id": 69
 	},
@@ -499,21 +499,21 @@
 	{
 		"name": "Timing Tutor",
 		"bp": 1,
-		"locations": "Charlieton (120  / 180  coins)",
+		"locations": "Charlieton (180  coins)",
 		"effect": "Teaches the timing for Stylish moves. An exclamation mark will appear over the character's head when the player should press.",
 		"id": 72
 	},
 	{
 		"name": "Simplifier",
 		"bp": 1,
-		"locations": "Lovely Howz of Badges (50 coins, available at start) Lovely Howz of Badges (50 coins after Chapter 6)",
+		"locations": "Lovely Howz of Badges (50 coins, available at start)\n Lovely Howz of Badges (50 coins after Chapter 6)",
 		"effect": "Makes Action Commands easier, but reduces the star power gained from them. Also loosens the timing required to Guard or Superguard. Downgrades the rank of each successful command (e.g. a \"Great\" becomes a \"Good\") once per each badge equipped; \"Nice\"s become smaller in size.",
 		"id": 73
 	},
 	{
 		"name": "Unsimplifier",
 		"bp": 1,
-		"locations": "Lovely Howz of Badges (50 coins, available at start) Lovely Howz of Badges (50 coins after Chapter 6)",
+		"locations": "Lovely Howz of Badges (50 coins, available at start)\n Lovely Howz of Badges (50 coins after Chapter 6)",
 		"effect": "Makes Action Commands harder, but increases the star power gained from them. Also restricts the timing required to Guard or Superguard. Upgrades the rank of each successful command (e.g. a \"Great\" becomes a \"Wonderful\") once per each badge equipped.",
 		"id": 74
 	},
@@ -583,14 +583,14 @@
 	{
 		"name": "W Emblem",
 		"bp": 0,
-		"locations": "Charlieton (360  / 432  coins)",
+		"locations": "Charlieton (432  coins)",
 		"effect": "Changes Mario's clothes into Wario's clothes. If combined with L Emblem, it will change Mario's clothes to Waluigi's clothes.",
 		"id": 84
 	},
 	{
 		"name": "Slow Go",
 		"bp": 0,
-		"locations": "Charlieton (12  / 60  coins)",
+		"locations": "Charlieton (60  coins)",
 		"effect": "Prevents Mario from moving quickly.",
 		"id": 85
 	},

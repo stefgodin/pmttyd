@@ -28,6 +28,17 @@
     <link id="itemsprite" rel="preload" href="/assets/items.png" as="image">
 
     <style>
+        @media not print {
+            img.decoded {
+                background: none !important;
+            }
+        }
+
+        @font-face {
+            font-family: 'HeyGorgeous';
+            src: url('/static/heygorgeous.ttf');
+        }
+
         :root {
             --color-light: white;
             --color-base: grey;
@@ -97,7 +108,6 @@
         }
 
         .list-container {
-            background-image: url('/static/items_background3.png');
             background-size: 200px;
             background-color: var(--color-base);
             padding: 10px;
@@ -109,8 +119,7 @@
         .list {
             list-style-type: none;
             margin: 0;
-            background-image: url('/static/items_background3.png');
-            background-position: -10px -10px;
+            background-image: url('/static/items_background.png');
             background-size: 200px;
             padding: 1em;
             border-radius: 10px;
@@ -144,17 +153,6 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
         }
 
-        nav .nav-section::after {
-            content: "";
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            top: 0;
-            left: 0;
-            background-image: url('/static/veil_effect.png');
-            border-radius: 0 0 20px 20px;
-        }
-
         nav .nav-section.active {
             background-image: linear-gradient(to right, var(--color-light), var(--color-dark));
             padding-top: 1.25em;
@@ -163,6 +161,81 @@
 
         nav a {
             text-decoration: none;
+        }
+
+        .item-dialog {
+            border: none;
+            background-color: transparent;
+        }
+
+        .item-dialog::backdrop {
+            background-color: black;
+            opacity: 0.2;
+        }
+
+        .item-dialog-body {
+            padding: 20px 0;
+            background-size: 200px;
+            background-color: var(--color-base);
+            border-radius: 10px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        }
+
+        .item-dialog-content {
+            background-image: url('/static/items_background.png');
+            background-size: 200px;
+            padding: 1em;
+            background-color: var(--color-light);
+        }
+
+        .item-sprite {
+            display: inline-block;
+        }
+
+        .item-title {
+            font-family: HeyGorgeous;
+            font-size: 1.25em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .item-description {
+            font-family: HeyGorgeous;
+            text-align: justify;
+        }
+
+        .dialog-close-button {
+            position: sticky;
+            bottom: 0;
+        }
+
+        .badge-points {
+            font-family: HeyGorgeous;
+        }
+
+        .text-bubble {
+            position: relative;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: inset 0px -5px 5px 0px rgba(0, 0, 0, 0.5);
+            padding: 1em;
+            margin-top: -10px;
+            margin-left: 2em;
+            margin-right: 2em;
+            margin-bottom: 20px;
+        }
+
+        .text-bubble-close-button {
+            cursor: pointer;
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background-image: url('/static/small_star.png');
+            background-color: transparent;
+            border: 0;
+            height: 60px;
+            width: 60px;
+            padding: 0;
         }
     </style>
 </head>
@@ -195,6 +268,22 @@
                 </li>
             </template>
             <ul class="list"></ul>
+
+            <dialog class="item-dialog badges">
+                <div class="item-dialog-body">
+                    <div class="item-dialog-content">
+                        <item-sprite class="item-sprite" src="/assets/badges.png" size="100" index=""></item-sprite>
+                        <div class="item-title"></div>
+                        <div class="badge-points"></div>
+                    </div>
+                </div>
+                <div class="text-bubble">
+                    <div class="item-description badge-effect"></div>
+                    <br>
+                    <div class="item-description badge-locations"></div>
+                    <button autofocus class="dialog-close-button text-bubble-close-button"></button>
+                </div>
+            </dialog>
         </div>
         <div class="list-container recipes">
             <template id="recipe-item-tpl">
@@ -246,8 +335,10 @@
 
             function updateContent() {
                 const sectionId = getSectionFromHash();
+                const itemId = getItemIdFromHash();
                 updateNav(sectionId);
                 updateLists(sectionId);
+                updateDialogs(sectionId, itemId);
             };
 
             function updateNav(sectionId) {
@@ -274,11 +365,17 @@
                 }
             };
 
-            async function loadBadgeList() {
-                const datasrc = document.getElementById('badgedata').href;
-                const imgsrc = document.getElementById('badgesprite').href;
+            let badgesPromise = null;
+            async function loadBadgesData() {
+                if (badgesPromise === null) {
+                    const datasrc = document.getElementById('badgedata').href;
+                    badgesPromise = fetch(datasrc).then((r) => r.json());
+                }
+                return badgesPromise;
+            }
 
-                const data = await fetch(datasrc).then((r) => r.json());
+            async function loadBadgeList() {
+                const data = await loadBadgesData();
 
                 const list = document.querySelector('.list-container.badges .list');
                 while (list.firstChild) {
@@ -298,12 +395,17 @@
                 }
             }
 
+            let itemsPromise = null;
+            async function loadItemsData() {
+                if (itemsPromise === null) {
+                    const datasrc = document.getElementById('itemdata').href;
+                    itemsPromise = fetch(datasrc).then((r) => r.json());
+                }
+                return itemsPromise;
+            }
+
             async function loadRecipeList() {
-                const datasrc = document.getElementById('itemdata').href;
-                const imgsrc = document.getElementById('itemsprite').href;
-
-                const data = (await fetch(datasrc).then((r) => r.json()));
-
+                const data = await loadItemsData();
 
                 const list = document.querySelector('.list-container.recipes .list');
                 while (list.firstChild) {
@@ -325,12 +427,66 @@
                 }
             }
 
+            function updateDialogs(sectionId, itemId) {
+                if (itemId === 0) {
+                    const dialogs = document.querySelectorAll('.item-dialog');
+                    for (const dialog of dialogs) {
+                        dialog.close();
+                    }
+                    return;
+                }
+
+                switch (sectionId) {
+                    case SECTIONS.BADGES:
+                        openBadgeDialog(itemId);
+                        break;
+                    case SECTIONS.RECIPES:
+                        openRecipeDialog(itemId);
+                        break;
+                }
+            }
+
+            async function openBadgeDialog(itemId) {
+                const badges = await loadBadgesData();
+                const index = badges.findIndex(({id}) => id === itemId);
+                const badgeDialog = document.querySelector('.item-dialog.badges');
+                if (index === -1) {
+                    badgeDialog.close();
+                    return;
+                }
+                const badge = badges[index];
+
+                badgeDialog.querySelector('item-sprite').setAttribute('index', index);
+
+                badgeDialog.querySelector('.item-title').textContent = badge.name;
+
+                badgeDialog.querySelector('.badge-points').textContent = `${badge.bp} BP`;
+                badgeDialog.querySelector('.item-description.badge-effect').textContent = badge.effect;
+                badgeDialog.querySelector('.item-description.badge-locations').textContent = badge.locations;
+
+                badgeDialog.showModal();
+            }
+
+            function openRecipeDialog(itemId) { }
+
             // Initialization
             loadBadgeList();
             loadRecipeList();
             updateContent();
 
             window.addEventListener('hashchange', updateContent);
+
+            for (const dialog of document.querySelectorAll('dialog.item-dialog')) {
+                dialog.addEventListener('click', function (event) {
+                    const {top, left, width, height} = dialog.getBoundingClientRect();
+                    const [x, y] = [event.clientX, event.clientY];
+                    if (top > y || y > (top + height) || left > x || x > (left + width)) {
+                        dialog.close();
+                    }
+                });
+                dialog.querySelector('.dialog-close-button').addEventListener('click', () => dialog.close());
+                dialog.addEventListener('close', () => window.location.hash = `#${getSectionFromHash()}`);
+            }
         })();
     </script>
 </body>
