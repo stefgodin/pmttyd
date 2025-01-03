@@ -1,3 +1,3 @@
 #!/bin/bash
 cd ../public
-npx http-server
+npx http-server -p 42069

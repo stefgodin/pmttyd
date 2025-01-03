@@ -39,7 +39,8 @@
             const spritesheetWidth = await getSpritesheetWidth(src);
 
             const styleRules = [
-                (src !== '' ? `background: url(${src})` : ''),
+                (src !== '' ? `background-image: url(${src})` : ''),
+                `background-color: transparent`,
                 `background-position: -${index * size * scale}px 0px`,
                 `background-size: ${scale * spritesheetWidth}px`,
                 `width: ${size * scale}px`,

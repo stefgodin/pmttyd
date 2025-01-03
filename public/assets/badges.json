@@ -9,7 +9,7 @@
 	{
 		"name": "Multibounce",
 		"bp": 1,
-		"locations": "Shhwonk Fortress\n Pianta Parlor (50  / 100  Piantas after getting Silver Card)\n Dropped by Paragoombas, Paragloombas, Dark Paratroopas , Parabuzzies, Swoopulas, Swampires",
+		"locations": "Shhwonk Fortress\n Pianta Parlor (100  Piantas after getting Silver Card)\n Dropped by Paragoombas, Paragloombas, Dark Paratroopas, Parabuzzies, Swoopulas, Swampires",
 		"effect": "Allows Mario to use Multibounce, a jump attack that hits each available enemy consecutively, for 2 FP.",
 		"id": 2
 	},
@@ -37,7 +37,7 @@
 	{
 		"name": "Tornado Jump",
 		"bp": 2,
-		"locations": "Creepy Steeple\n Pianta Parlor (67  / 150  Piantas after getting Gold Card)\n Dropped by all Lakitu types, Ruff Puffs",
+		"locations": "Creepy Steeple\n Pianta Parlor (150  Piantas after getting Gold Card)\n Dropped by all Lakitu types, Ruff Puffs",
 		"effect": "Allows Mario to use Tornado Jump, a jump attack that jumps on one enemy and then damages all midair enemies, for 3 FP. Each additional Power Jump badge worn doubles the FP, and adds 1 to the jump’s damage and 2 to the tornado’s.",
 		"id": 6
 	},
@@ -465,7 +465,7 @@
 		"name": "Money Money",
 		"bp": 5,
 		"locations": "Pianta Parlor (450  Piantas after getting Platinum Card)\n The Creepy Steeple Boo (after completing all quizzes)\n Dropped by Dark Boos, all Bill Blaster types",
-		"effect": "Mario wins twice as many coins from battle than he usually does. Additional copies worn increase the multiplier by 1× each, but there is a maximum limit of 32  / 99  coins as to how many can be in the field at once (based on the presence of other items and pickups).",
+		"effect": "Mario wins twice as many coins from battle than he usually does. Additional copies worn increase the multiplier by 1× each, but there is a maximum limit of 99  coins as to how many can be in the field at once (based on the presence of other items and pickups).",
 		"id": 67
 	},
 	{

@@ -119,6 +119,7 @@
         .list {
             list-style-type: none;
             margin: 0;
+            background-color: transparent;
             background-image: url('/static/items_background.png');
             background-size: 200px;
             padding: 1em;
@@ -201,7 +202,7 @@
 
         .item-description {
             font-family: HeyGorgeous;
-            text-align: justify;
+            white-space: pre-line;
         }
 
         .dialog-close-button {
@@ -214,6 +215,7 @@
         }
 
         .text-bubble {
+            text-align: justify;
             position: relative;
             background-color: white;
             border-radius: 20px;
@@ -236,6 +238,16 @@
             height: 60px;
             width: 60px;
             padding: 0;
+        }
+
+        .tab-button.active {}
+
+        .tab-item {
+            display: none;
+        }
+
+        .tab-item.active {
+            display: unset;
         }
     </style>
 </head>
@@ -275,13 +287,22 @@
                         <item-sprite class="item-sprite" src="/assets/badges.png" size="100" index=""></item-sprite>
                         <div class="item-title"></div>
                         <div class="badge-points"></div>
+                        <div class="tabs">
+                            <button class="tab-button active effect-button" target="badge-effect" type="button"
+                                title="Effect">
+                                Effect
+                            </button>
+                            <button class="tab-button locations-button" target="badge-locations" type="button"
+                                title="Locations">
+                                Locations
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="text-bubble">
-                    <div class="item-description badge-effect"></div>
-                    <br>
-                    <div class="item-description badge-locations"></div>
-                    <button autofocus class="dialog-close-button text-bubble-close-button"></button>
+                    <div class="tab-item active item-description badge-effect"></div>
+                    <div class="tab-item item-description badge-locations"></div>
+                    <button type="button" autofocus class="dialog-close-button text-bubble-close-button"></button>
                 </div>
             </dialog>
         </div>
@@ -461,8 +482,9 @@
                 badgeDialog.querySelector('.item-title').textContent = badge.name;
 
                 badgeDialog.querySelector('.badge-points').textContent = `${badge.bp} BP`;
-                badgeDialog.querySelector('.item-description.badge-effect').textContent = badge.effect;
-                badgeDialog.querySelector('.item-description.badge-locations').textContent = badge.locations;
+                badgeDialog.querySelector('.item-description.badge-effect').textContent = badge.effect.replaceAll('.', '.\n\n').trim('\n');
+                badgeDialog.querySelector('.item-description.badge-locations').textContent = badge.locations.replaceAll('\n', '\n\n').trim('\n');
+
 
                 badgeDialog.showModal();
             }
@@ -486,6 +508,29 @@
                 });
                 dialog.querySelector('.dialog-close-button').addEventListener('click', () => dialog.close());
                 dialog.addEventListener('close', () => window.location.hash = `#${getSectionFromHash()}`);
+
+                for (const btn of dialog.querySelectorAll('.tab-button')) {
+                    btn.addEventListener('click', function (event) {
+                        for (const btn of dialog.querySelectorAll('.tab-button')) {
+                            if (btn === event.target) {
+                                btn.classList.add('active');
+                            }
+                            else {
+                                btn.classList.remove('active');
+                            }
+                        }
+
+                        const targetClass = event.target.getAttribute('target');
+                        for (const el of dialog.querySelectorAll('.tab-item')) {
+                            if (el.classList.contains(targetClass)) {
+                                el.classList.add('active');
+                            }
+                            else {
+                                el.classList.remove('active');
+                            }
+                        }
+                    });
+                }
             }
         })();
     </script>
