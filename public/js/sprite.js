@@ -16,10 +16,16 @@
         });
     }
 
+    const mediaQueries = {
+        sm: window.matchMedia("(min-width: 576px)"),
+        md: window.matchMedia("(min-width: 768px)"),
+        lg: window.matchMedia("(min-width: 992px)"),
+        xl: window.matchMedia("(min-width: 1200px)"),
+    };
 
     class ItemSprite extends HTMLElement {
         static get observedAttributes() {
-            return ['index', 'src', 'size', 'scale'];
+            return ['index', 'src', 'size', 'scale', 'scale-sm', 'scale-md', 'scale-lg', 'scale-xl'];
         }
 
         attributeChangedCallback() {
@@ -66,7 +72,14 @@
         }
 
         get scale() {
-            const scale = parseFloat(this.getAttribute('scale') ?? 1.0);
+            let scale = this.getAttribute('scale') ?? 1.0;
+            for (let code in mediaQueries) {
+                if (mediaQueries[code].matches && this.hasAttribute(`scale-${code}`)) {
+                    scale = this.getAttribute(`scale-${code}`);
+                }
+            }
+
+            scale = parseFloat(scale);
             if (isNaN(scale)) {
                 return 1.0;
             }

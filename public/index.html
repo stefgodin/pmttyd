@@ -27,6 +27,7 @@
     <link id="itemdata" rel="preload" href="/assets/items.json" as="fetch" crossorigin="anonymous">
     <link id="itemsprite" rel="preload" href="/assets/items.png" as="image">
 
+    <!-- xs -->
     <style>
         @media not print {
             img.decoded {
@@ -99,8 +100,11 @@
         }
 
         main {
-            margin-top: 3.5em;
-            padding: 1em;
+            margin-top: 3em;
+            padding: 0.25em;
+            max-width: 996px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hidden {
@@ -132,9 +136,16 @@
         }
 
         nav {
+            width: 100%;
             position: absolute;
-            padding: 0 2em;
             top: 0;
+        }
+
+        .nav-content {
+            width: 100%;
+            max-width: 996px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         nav .nav-section {
@@ -154,6 +165,10 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
         }
 
+        .nav-section:first-child {
+            margin-left: 0.5em;
+        }
+
         nav .nav-section.active {
             background-image: linear-gradient(to right, var(--color-light), var(--color-dark));
             padding-top: 1.25em;
@@ -162,6 +177,10 @@
 
         nav a {
             text-decoration: none;
+        }
+
+        dialog {
+            scrollbar-width: none;
         }
 
         .item-dialog {
@@ -227,8 +246,8 @@
             box-shadow: inset 0px -5px 5px 0px rgba(0, 0, 0, 0.5);
             padding: 1em;
             margin-top: -10px;
-            margin-left: 2em;
-            margin-right: 2em;
+            margin-left: 0.15em;
+            margin-right: 0.15em;
             margin-bottom: 20px;
         }
 
@@ -303,32 +322,63 @@
             border-radius: 0 10px 10px 0;
         }
     </style>
+
+    <!-- sm -->
+    <style media="(min-width: 576px)">
+        main {
+            padding: 1em;
+        }
+
+        .nav-section:first-child {
+            margin-left: 1em;
+        }
+
+        .text-bubble {
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+    </style>
+
+    <!-- md -->
+    <style media="(min-width: 768px)">
+    </style>
+
+    <!-- lg -->
+    <style media="(min-width: 992px)">
+    </style>
+
+    <!-- xl -->
+    <style media="(min-width: 1200px)">
+    </style>
 </head>
 
 <body>
     <nav>
-        <a class="nav-section badges" href="#badges" title="Badges">
-            <item-sprite src="/assets/menu.png" size="100" index="0" scale="0.5"></item-sprite>
-        </a>
-        <a class="nav-section recipes" href="#recipes" title="Recipes">
-            <item-sprite src="/assets/menu.png" size="100" index="1" scale="0.5"></item-sprite>
-        </a>
-        <a class="nav-section starpieces" href="#starpieces" title="Star Pieces">
-            <item-sprite src="/assets/menu.png" size="100" index="2" scale="0.5"></item-sprite>
-        </a>
-        <a class="nav-section shinesprites" href="#shinesprites" title="Shine Sprites">
-            <item-sprite src="/assets/menu.png" size="100" index="3" scale="0.5"></item-sprite>
-        </a>
-        <a class="nav-section tattlelog" href="#tattlelog" title="Tattle Log">
-            <item-sprite src="/assets/menu.png" size="100" index="4" scale="0.5"></item-sprite>
-        </a>
+        <div class="nav-content">
+            <a class="nav-section badges" href="#badges" title="Badges">
+                <item-sprite src="/assets/menu.png" size="100" index="0" scale="0.4" scale-sm="0.5"></item-sprite>
+            </a>
+            <a class="nav-section recipes" href="#recipes" title="Recipes">
+                <item-sprite src="/assets/menu.png" size="100" index="1" scale="0.4" scale-sm="0.5"></item-sprite>
+            </a>
+            <a class="nav-section starpieces" href="#starpieces" title="Star Pieces">
+                <item-sprite src="/assets/menu.png" size="100" index="2" scale="0.4" scale-sm="0.5"></item-sprite>
+            </a>
+            <a class="nav-section shinesprites" href="#shinesprites" title="Shine Sprites">
+                <item-sprite src="/assets/menu.png" size="100" index="3" scale="0.4" scale-sm="0.5"></item-sprite>
+            </a>
+            <a class="nav-section tattlelog" href="#tattlelog" title="Tattle Log">
+                <item-sprite src="/assets/menu.png" size="100" index="4" scale="0.4" scale-sm="0.5"></item-sprite>
+            </a>
+        </div>
     </nav>
     <main>
         <div class="list-container badges">
             <template id="badge-item-tpl">
                 <li>
                     <a href="" title="">
-                        <item-sprite src="/assets/badges.png" size="100" index="" scale="0.5"></item-sprite>
+                        <item-sprite src="/assets/badges.png" size="100" index="" scale="0.5"
+                            scale-md="0.6"></item-sprite>
                     </a>
                 </li>
             </template>
@@ -362,7 +412,8 @@
             <template id="recipe-item-tpl">
                 <li>
                     <a href="" title="">
-                        <item-sprite src="/assets/items.png" size="100" index="" scale="0.5"></item-sprite>
+                        <item-sprite src="/assets/items.png" size="100" index="" scale="0.5"
+                            scale-md="0.6"></item-sprite>
                     </a>
                 </li>
             </template>
@@ -534,7 +585,7 @@
                 badgeDialog.querySelector('.item-title').textContent = badge.name;
 
                 badgeDialog.querySelector('.badge-points').textContent = `${badge.bp} BP`;
-                badgeDialog.querySelector('.item-description.badge-effect').textContent = badge.effect.replaceAll('.', '.\n\n').trim('\n');
+                badgeDialog.querySelector('.item-description.badge-effect').textContent = badge.effect.replaceAll(/\. ([A-Z])/g, '.\n\n$1').trim('\n');
                 badgeDialog.querySelector('.item-description.badge-locations').textContent = badge.locations.replaceAll('\n', '\n\n').trim('\n');
 
 
