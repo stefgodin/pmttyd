@@ -526,7 +526,7 @@
 	},
 	{
 		"name": "First Attack",
-		"bp": "1  \n 0",
+		"bp": 0,
 		"locations": "Lovely Howz of Badges (100 coins after Chapter 2)",
 		"effect": "If Mario gets a \"First Strike\" on a weak enemy (who no longer gives the player Star Points), he will defeat it without entering a battle. Does not work in the Glitz Pit and the Pit of 100 Trials.",
 		"id": 76
