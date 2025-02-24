@@ -1,543 +1,898 @@
 [
 	{
+        "id": 1,
 		"name": "Boo's Sheet",
-		"id": 0,
-		"description": "",
-		"type": "item"
+		"type": "item",
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 2,
 		"name": "Cake Mix",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 3,
 		"name": "Coconut",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 4,
 		"name": "Courage Shell",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 5,
 		"name": "Dizzy Dial",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 6,
 		"name": "Dried Bouquet",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 7,
 		"name": "Dried Mushroom",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 8,
 		"name": "Earth Quake",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 9,
 		"name": "Fire Flower",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 10,
 		"name": "Fresh Pasta",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 11,
 		"name": "Fright Mask",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 12,
 		"name": "Gold Bar",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 13,
 		"name": "Gold Bar x3",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 14,
 		"name": "Golden Leaf",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 15,
 		"name": "Gradual Syrup",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 16,
 		"name": "Honey Syrup",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 17,
 		"name": "Horsetail",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 18,
 		"name": "Hot Dog",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 19,
 		"name": "Hot Sauce",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 20,
 		"name": "HP Drain",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 21,
 		"name": "Ice Storm",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 22,
 		"name": "Inn Coupon",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 23,
 		"name": "Jammin' Jelly",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 24,
 		"name": "Keel Mango",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 25,
 		"name": "Life Mushroom",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 26,
 		"name": "Maple Syrup",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 27,
 		"name": "Mini Mr. Mini",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 28,
 		"name": "Mr. Softener",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 29,
 		"name": "Mushroom",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 30,
 		"name": "Mystery",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 31,
 		"name": "Mystic Egg",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 32,
 		"name": "Peachy Peach",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 33,
 		"name": "Point Swap",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 34,
 		"name": "POW Block",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 35,
 		"name": "Power Punch",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 36,
 		"name": "Repel Cape",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 37,
 		"name": "Ruin Powder",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 38,
 		"name": "Shooting Star",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 39,
 		"name": "Sleepy Sheep",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 40,
 		"name": "Slow Mushroom",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 41,
 		"name": "Spite Pouch",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 42,
 		"name": "Stop Watch",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 43,
 		"name": "Super Mushroom",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 44,
 		"name": "Tasty Tonic",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 45,
 		"name": "Thunder Bolt",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 46,
 		"name": "Thunder Rage",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 47,
 		"name": "Turtley Leaf",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 48,
 		"name": "Ultra Mushroom",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 49,
 		"name": "Volt Mushroom",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0
 	},
 	{
+        "id": 50,
 		"name": "Whacka Bump",
 		"type": "item",
-		"id": 0
+		"recipeEntry": 0,
+        "recipes": []
 	},
 	{
+        "id": 51,
 		"name": "Mushroom Fry",
 		"type": "recipe",
-		"id": 1
+		"recipeEntry": 1,
+        "recipes": [
+            {"items": [7], "book": true},
+            {"items": [29], "book": false},
+            {"items": [102], "book": true},
+            {"items": [43], "book": false},
+            {"items": [49], "book": false},
+            {"items": [7, 9], "book": true},
+            {"items": [7, 49], "book": true},
+            {"items": [29, 7], "book": true},
+            {"items": [30], "book": false}
+        ]
 	},
 	{
+        "id": 52,
 		"name": "Mushroom Roast",
 		"type": "recipe",
-		"id": 2
+		"recipeEntry": 2,
+        "recipes": [
+            {"items": [40], "book": false},
+            {"items": [25], "book": false},
+            {"items": [40, 49], "book": true},
+            {"items": [25, 49], "book": true},
+            {"items": [29, 9], "book": true},
+            {"items": [29, 43], "book": true},
+            {"items": [29, 49], "book": true},
+            {"items": [29, 15], "book": true},
+            {"items": [43, 7], "book": true},
+            {"items": [43, 49], "book": true}
+        ]
 	},
 	{
+        "id": 53,
 		"name": "Mushroom Steak",
 		"type": "recipe",
-		"id": 3
+		"recipeEntry": 3,
+        "recipes": [
+            {"items": [48], "book": false},
+            {"items": [25, 7], "book": true},
+            {"items": [25, 29], "book": true},
+            {"items": [25, 43], "book": true},
+            {"items": [25, 48], "book": true},
+            {"items": [48, 7], "book": true},
+            {"items": [48, 29], "book": true},
+            {"items": [48, 43], "book": true},
+            {"items": [48, 49], "book": true}
+        ]
 	},
 	{
+        "id": 54,
 		"name": "Honey Mushroom",
 		"type": "recipe",
-		"id": 4
+		"recipeEntry": 4,
+        "recipes": [
+            {"items": [29, 16], "book": true},
+            {"items": [40, 16], "book": true},
+            {"items": [49, 16], "book": true},
+            {"items": [30], "book": false}
+        ]
 	},
 	{
+        "id": 55,
 		"name": "Maple Mushroom",
 		"type": "recipe",
-		"id": 5
+		"recipeEntry": 5,
+        "recipes": [
+            {"items": [29, 26], "book": true},
+            {"items": [40, 26], "book": true},
+            {"items": [49, 26], "book": true}
+        ]
 	},
 	{
+        "id": 56,
 		"name": "Jelly Mushroom",
 		"type": "recipe",
-		"id": 6
+		"recipeEntry": 6,
+        "recipes": [
+            {"items": [29, 23], "book": true},
+            {"items": [49, 23], "book": true}
+        ]
 	},
 	{
+        "id": 57,
 		"name": "Honey Super",
 		"type": "recipe",
-		"id": 7
+		"recipeEntry": 7,
+        "recipes": [
+            {"items": [25, 16], "book": true},
+            {"items": [43, 16], "book": true}
+        ]
 	},
 	{
+        "id": 58,
 		"name": "Maple Super",
 		"type": "recipe",
-		"id": 8
+		"recipeEntry": 8,
+        "recipes": [
+            {"items": [43, 26], "book": true},
+            {"items": [25, 26], "book": true},
+            {"items": [40, 23], "book": true}
+        ]
 	},
 	{
+        "id": 59,
 		"name": "Jelly Super",
 		"type": "recipe",
-		"id": 9
+		"recipeEntry": 9,
+        "recipes": [
+            {"items": [25, 23], "book": true},
+            {"items": [43, 23], "book": true}
+        ]
 	},
 	{
+        "id": 60,
 		"name": "Honey Ultra",
 		"type": "recipe",
-		"id": 10
+		"recipeEntry": 10,
+        "recipes": [
+            {"items": [48, 16], "book": true}
+        ]
 	},
 	{
+        "id": 61,
 		"name": "Maple Ultra",
 		"type": "recipe",
-		"id": 11
+		"recipeEntry": 11,
+        "recipes": [
+            {"items": [48, 26], "book": true}
+        ]
 	},
 	{
+        "id": 62,
 		"name": "Jelly Ultra",
 		"type": "recipe",
-		"id": 12
+		"recipeEntry": 12,
+        "recipes": [
+            {"items": [48, 23], "book": true}
+        ]
 	},
 	{
+        "id": 63,
 		"name": "Zess Dinner",
 		"type": "recipe",
-		"id": 13
+		"recipeEntry": 13,
+        "recipes": [
+            {"items": [29, 17], "book": true},
+            {"items": [43, 9], "book": true},
+            {"items": [43, 15], "book": true},
+            {"items": [43, 17], "book": true},
+            {"items": [43, 24], "book": true},
+            {"items": [43, 32], "book": true},
+            {"items": [48, 24], "book": true},
+            {"items": [48, 32], "book": true},
+            {"items": [25, 9], "book": true},
+            {"items": [25, 15], "book": true},
+            {"items": [25, 17], "book": true},
+            {"items": [25, 40], "book": true},
+            {"items": [10, 7], "book": true},
+            {"items": [10, 29], "book": true},
+            {"items": [10, 43], "book": true},
+            {"items": [10, 25], "book": true},
+            {"items": [10, 31], "book": true},
+            {"items": [10, 3], "book": true},
+            {"items": [10, 75], "book": true},
+            {"items": [75, 51], "book": true},
+            {"items": [75, 67], "book": true},
+            {"items": [75, 66], "book": true},
+            {"items": [68, 3], "book": true},
+            {"items": [76, 82], "book": true},
+            {"items": [30], "book": false}
+        ]
 	},
 	{
+        "id": 64,
 		"name": "Zess Special",
 		"type": "recipe",
-		"id": 14
+		"recipeEntry": 14,
+        "recipes": [
+            {"items": [50], "book": false},
+            {"items": [48, 10], "book": true},
+            {"items": [48, 9], "book": true},
+            {"items": [48, 15], "book": true},
+            {"items": [48, 17], "book": true},
+            {"items": [75, 69], "book": true},
+            {"items": [75, 52], "book": true},
+            {"items": [75, 68], "book": true}
+        ]
 	},
 	{
+        "id": 65,
 		"name": "Zess Deluxe",
 		"type": "recipe",
-		"id": 15
+		"recipeEntry": 15,
+        "recipes": [
+            {"items": [50, 14], "book": true},
+            {"items": [53, 75], "book": true}
+        ]
 	},
 	{
+        "id": 66,
 		"name": "Spaghetti",
 		"type": "recipe",
-		"id": 16
+		"recipeEntry": 16,
+        "recipes": [
+            {"items": [10], "book": false},
+            {"items": [30], "book": false}
+        ]
 	},
 	{
+        "id": 67,
 		"name": "Koopasta",
 		"type": "recipe",
-		"id": 17
+		"recipeEntry": 17,
+        "recipes": [
+            {"items": [10, 47], "book": true},
+            {"items": [66, 47], "book": true},
+            {"items": [30], "book": false}
+        ]
 	},
 	{
+        "id": 68,
 		"name": "Spicy Pasta",
 		"type": "recipe",
-		"id": 18
+		"recipeEntry": 18,
+        "recipes": [
+            {"items": [19, 10], "book": true},
+            {"items": [19, 66], "book": true},
+            {"items": [19, 67], "book": true}
+        ]
 	},
 	{
+        "id": 69,
 		"name": "Ink Pasta",
 		"type": "recipe",
-		"id": 19
+		"recipeEntry": 19,
+        "recipes": [
+            {"items": [92, 10], "book": true},
+            {"items": [92, 66], "book": true},
+            {"items": [92, 67], "book": true},
+            {"items": [92, 68], "book": true}
+        ]
 	},
 	{
+        "id": 70,
 		"name": "Hottest Dog",
 		"type": "recipe",
-		"id": 20
+		"recipeEntry": 20,
+        "recipes": [
+            {"items": [19, 18], "book": true}
+        ]
 	},
 	{
+        "id": 71,
 		"name": "Spicy Soup",
 		"type": "recipe",
-		"id": 21
+		"recipeEntry": 21,
+        "recipes": [
+            {"items": [9], "book": false},
+            {"items": [17], "book": true},
+            {"items": [95], "book": true},
+            {"items": [6], "book": true},
+            {"items": [9, 19], "book": true},
+            {"items": [9, 6], "book": true},
+            {"items": [30], "book": false}
+        ]
 	},
 	{
+        "id": 72,
 		"name": "Fried Egg",
 		"type": "recipe",
-		"id": 22
+		"recipeEntry": 22,
+        "recipes": [
+            {"items": [31], "book": false},
+            {"items": [30], "book": false}
+        ]
 	},
 	{
+        "id": 73,
 		"name": "Omelette Meal",
 		"type": "recipe",
-		"id": 23
+		"recipeEntry": 23,
+        "recipes": [
+            {"items": [31, 17], "book": true},
+            {"items": [31, 29], "book": true},
+            {"items": [31, 43], "book": true},
+            {"items": [31, 25], "book": true},
+            {"items": [31, 48], "book": true}
+        ]
 	},
 	{
+        "id": 74,
 		"name": "Koopa Bun",
 		"type": "recipe",
-		"id": 24
+		"recipeEntry": 24,
+        "recipes": [
+            {"items": [24, 47], "book": true}
+        ]
 	},
 	{
+        "id": 75,
 		"name": "Healthy Salad",
 		"type": "recipe",
-		"id": 25
+		"recipeEntry": 25,
+        "recipes": [
+            {"items": [47, 14], "book": true},
+            {"items": [47, 17], "book": true}
+        ]
 	},
 	{
+        "id": 76,
 		"name": "Meteor Meal",
 		"type": "recipe",
-		"id": 26
+		"recipeEntry": 26,
+        "recipes": [
+            {"items": [51, 38], "book": true},
+            {"items": [52, 38], "book": true},
+            {"items": [53, 38], "book": true}
+        ]
 	},
 	{
+        "id": 77,
 		"name": "Couple's Cake",
 		"type": "recipe",
-		"id": 27
+		"recipeEntry": 27,
+        "recipes": []
 	},
 	{
+        "id": 78,
 		"name": "Mousse Cake",
 		"type": "recipe",
-		"id": 28
+		"recipeEntry": 28,
+        "recipes": []
 	},
 	{
+        "id": 79,
 		"name": "Mushroom Cake",
 		"type": "recipe",
-		"id": 29
+		"recipeEntry": 29,
+        "recipes": []
 	},
 	{
+        "id": 80,
 		"name": "Choco Cake",
 		"type": "recipe",
-		"id": 30
+		"recipeEntry": 30,
+        "recipes": []
 	},
 	{
+        "id": 81,
 		"name": "Heartful Cake",
 		"type": "recipe",
-		"id": 31
+		"recipeEntry": 31,
+        "recipes": []
 	},
 	{
+        "id": 82,
 		"name": "Fruit Parfait",
 		"type": "recipe",
-		"id": 32
+		"recipeEntry": 32,
+        "recipes": []
 	},
 	{
+        "id": 83,
 		"name": "Mango Delight",
 		"type": "recipe",
-		"id": 33
+		"recipeEntry": 33,
+        "recipes": []
 	},
 	{
+        "id": 84,
 		"name": "Love Pudding",
 		"type": "recipe",
-		"id": 34
+		"recipeEntry": 34,
+        "recipes": []
 	},
 	{
+        "id": 85,
 		"name": "Zess Cookie",
 		"type": "recipe",
-		"id": 35
+		"recipeEntry": 35,
+        "recipes": []
 	},
 	{
+        "id": 86,
 		"name": "Mushroom Crepe",
 		"type": "recipe",
-		"id": 36
+		"recipeEntry": 36,
+        "recipes": []
 	},
 	{
+        "id": 87,
 		"name": "Peach Tart",
 		"type": "recipe",
-		"id": 37
+		"recipeEntry": 37,
+        "recipes": []
 	},
 	{
+        "id": 88,
 		"name": "Koopa Tea",
 		"type": "recipe",
-		"id": 38
+		"recipeEntry": 38,
+        "recipes": []
 	},
 	{
+        "id": 89,
 		"name": "Zess Tea",
 		"type": "recipe",
-		"id": 39
+		"recipeEntry": 39,
+        "recipes": []
 	},
 	{
+        "id": 90,
 		"name": "Mushroom Broth",
 		"type": "recipe",
-		"id": 40
+		"recipeEntry": 40,
+        "recipes": []
 	},
 	{
+        "id": 91,
 		"name": "Fresh Juice",
 		"type": "recipe",
-		"id": 41
+		"recipeEntry": 41,
+        "recipes": []
 	},
 	{
+        "id": 92,
 		"name": "Inky Sauce",
 		"type": "recipe",
-		"id": 42
+		"recipeEntry": 42,
+        "recipes": []
 	},
 	{
+        "id": 93,
 		"name": "Icicle Pop",
 		"type": "recipe",
-		"id": 43
+		"recipeEntry": 43,
+        "recipes": []
 	},
 	{
+        "id": 94,
 		"name": "Zess Frappe",
 		"type": "recipe",
-		"id": 44
+		"recipeEntry": 44,
+        "recipes": []
 	},
 	{
+        "id": 95,
 		"name": "Snow Bunny",
 		"type": "recipe",
-		"id": 45
+		"recipeEntry": 45,
+        "recipes": []
 	},
 	{
+        "id": 96,
 		"name": "Coco Candy",
 		"type": "item",
-		"id": 46
+		"recipeEntry": 46,
+        "recipes": []
 	},
 	{
+        "id": 97,
 		"name": "Honey Candy",
 		"type": "recipe",
-		"id": 47
+		"recipeEntry": 47,
+        "recipes": []
 	},
 	{
+        "id": 98,
 		"name": "Jelly Candy",
 		"type": "recipe",
-		"id": 48
+		"recipeEntry": 48,
+        "recipes": []
 	},
 	{
+        "id": 99,
 		"name": "Electro Pop",
 		"type": "recipe",
-		"id": 49
+		"recipeEntry": 49,
+        "recipes": []
 	},
 	{
+        "id": 100,
 		"name": "Fire Pop",
 		"type": "recipe",
-		"id": 50
+		"recipeEntry": 50,
+        "recipes": []
 	},
 	{
+        "id": 101,
 		"name": "Space Food",
 		"type": "recipe",
-		"id": 51
+		"recipeEntry": 51,
+        "recipes": []
 	},
 	{
+        "id": 102,
 		"name": "Poison Mushroom",
 		"type": "recipe",
-		"id": 52
+		"recipeEntry": 52,
+        "recipes": []
 	},
 	{
+        "id": 103,
 		"name": "Trial Stew",
 		"type": "recipe",
-		"id": 53
+		"recipeEntry": 53,
+        "recipes": []
 	},
 	{
+        "id": 104,
 		"name": "Courage Meal",
 		"type": "recipe",
-		"id": 54
+		"recipeEntry": 54,
+        "recipes": []
 	},
 	{
+        "id": 105,
 		"name": "Coconut Bomb",
 		"type": "recipe",
-		"id": 55
+		"recipeEntry": 55,
+        "recipes": []
 	},
 	{
+        "id": 106,
 		"name": "Egg Bomb",
 		"type": "recipe",
-		"id": 56
+		"recipeEntry": 56,
+        "recipes": []
 	},
 	{
+        "id": 107,
 		"name": "Zess Dynamite",
 		"type": "recipe",
-		"id": 57
+		"recipeEntry": 57,
+        "recipes": []
 	},
 	{
+        "id": 108,
 		"name": "Mistake",
 		"type": "recipe",
-		"id": 58
+		"recipeEntry": 58,
+        "recipes": []
 	}
 ]

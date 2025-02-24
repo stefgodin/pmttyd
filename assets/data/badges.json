@@ -444,14 +444,14 @@
 		"name": "Feeling Fine",
 		"bp": 4,
 		"locations": "X-Naut Fortress (find Cog and use crane)",
-		"effect": "Protects Mario from almost all status ailments (not just the poisoning and dizziness ailments, as the description states).2",
+		"effect": "Protects Mario from almost all status ailments (not just the poisoning and dizziness ailments, as the description states).",
 		"id": 64
 	},
 	{
 		"name": "Feeling Fine P",
 		"bp": 4,
 		"locations": "X-Naut Fortress (find Cog and use crane)",
-		"effect": "Protects Mario's partner from almost all status ailments (not just the poisoning and dizziness ailments, as the description states).2",
+		"effect": "Protects Mario's partner from almost all status ailments (not just the poisoning and dizziness ailments, as the description states).",
 		"id": 65
 	},
 	{
