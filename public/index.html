@@ -328,6 +328,12 @@
         .tab-button:last-child {
             border-radius: 0 10px 10px 0;
         }
+
+        .recipe-list-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25em;
+        }
     </style>
 
     <!-- sm -->
@@ -380,7 +386,7 @@
         </div>
     </nav>
     <main>
-        <div class="list-container badges">
+        <div class="section list-container badges">
             <template id="badge-item-tpl">
                 <li>
                     <a href="" title="">
@@ -415,7 +421,7 @@
                 </div>
             </dialog>
         </div>
-        <div class="list-container recipes">
+        <div class="section recipes">
             <template id="recipe-item-tpl">
                 <li>
                     <a href="" title="">
@@ -424,26 +430,322 @@
                     </a>
                 </li>
             </template>
-            <ul class="list"></ul>
+            <div class="list-container recipe-list">
+                <ul class="list"></ul>
+            </div>
+            <div class="list-container item-list">
+                <ul class="list"></ul>
+            </div>
+
+            <dialog class="item-dialog recipes">
+                <div class="item-dialog-body">
+                    <div class="item-dialog-content">
+                        <item-sprite class="item-sprite" src="/assets/items.png" size="100" index=""></item-sprite>
+                        <div class="item-title"></div>
+
+                        <div class="item-used-in-container recipe-list-container"></div>
+                        <hr>
+                        <div class="item-made-with-container recipe-list-container"></div>
+                    </div>
+                </div>
+            </dialog>
         </div>
-        <div class="list-container starpieces">
+        <div class="section list-container starpieces">
             <ul class="list">
                 <li>Comming Soon</li>
             </ul>
         </div>
-        <div class="list-container shinesprites">
+        <div class="section list-container shinesprites">
             <ul class="list">
                 <li>Comming Soon</li>
             </ul>
         </div>
-        <div class="list-container tattlelog">
+        <div class="section list-container tattlelog">
             <ul class="list">
                 <li>Comming Soon</li>
             </ul>
         </div>
     </main>
 
-    <script src="/js/sprite.js"></script>
+    <script>
+        const $mediaQueries = {
+            sm: window.matchMedia("(min-width: 576px)"),
+            md: window.matchMedia("(min-width: 768px)"),
+            lg: window.matchMedia("(min-width: 992px)"),
+            xl: window.matchMedia("(min-width: 1200px)"),
+        };
+
+        const $dataLoader = {
+            loadBadgesData: (() => {
+                let badgesPromise = null;
+                return async () => {
+                    if (badgesPromise === null) {
+                        const datasrc = document.getElementById('badgedata').href;
+                        badgesPromise = fetch(datasrc).then((r) => r.json());
+                    }
+                    return badgesPromise;
+                }
+            })(),
+            loadItemsData: (() => {
+                let itemsPromise = null;
+                return async () => {
+                    if (itemsPromise === null) {
+                        const datasrc = document.getElementById('itemdata').href;
+                        itemsPromise = fetch(datasrc).then((r) => r.json()).then((items) => {
+                            const itemAsIngredientMap = {};
+                            for (let item of items) {
+                                for (let recipe of item.recipes ?? []) {
+                                    for (let recipeItem of recipe.items) {
+                                        itemAsIngredientMap[recipeItem] ??= [];
+                                        if (!itemAsIngredientMap[recipeItem].includes(item.id)) {
+                                            itemAsIngredientMap[recipeItem].push(item.id);
+                                        }
+                                    }
+                                }
+                            }
+
+                            for (let itemId in itemAsIngredientMap) {
+                                items[itemId - 1].usedIn = itemAsIngredientMap[itemId];
+                            }
+
+                            return items;
+                        });
+                    }
+                    return itemsPromise;
+                }
+            })()
+        };
+    </script>
+
+    <script>
+        (($mediaQueries) => {
+            const spritesheetPromises = {};
+            const getSpritesheetWidth = async (src) => {
+                if (spritesheetPromises[src] !== undefined) {
+                    return spritesheetPromises[src];
+                }
+
+                return spritesheetPromises[src] = new Promise((res, rej) => {
+                    const img = new Image();
+                    img.src = src;
+                    img.onload = () => res(img.width);
+                    img.onerror = (e) => {
+                        delete spritesheetPromises[src];
+                        rej(e);
+                    };
+                });
+            }
+
+            class ItemSprite extends HTMLElement {
+                static get observedAttributes() {
+                    return ['index', 'src', 'size', 'scale', 'scale-sm', 'scale-md', 'scale-lg', 'scale-xl'];
+                }
+
+                attributeChangedCallback() {
+                    this.update();
+                }
+
+                connectedCallback() {
+                    this.update();
+                }
+
+                async update() {
+                    const index = this.index;
+                    const size = this.size;
+                    const src = this.src;
+                    const scale = this.scale;
+
+                    const spritesheetWidth = await getSpritesheetWidth(src);
+
+                    const styleRules = [
+                        (src !== '' ? `background-image: url(${src})` : ''),
+                        `background-color: transparent`,
+                        `background-position: -${index * size * scale}px 0px`,
+                        `background-size: ${scale * spritesheetWidth}px`,
+                        `width: ${size * scale}px`,
+                        `height: ${size * scale}px`,
+                    ];
+                    this.innerHTML = `<div style="${styleRules.join(';')}">`;
+                }
+
+                get index() {
+                    const index = parseInt(this.getAttribute('index') ?? 0);
+                    if (isNaN(index) || index < 0) {
+                        return 0;
+                    }
+                    return index;
+                }
+
+                get size() {
+                    const size = parseInt(this.getAttribute('size') ?? 0);
+                    if (isNaN(size) || size < 0) {
+                        return 0;
+                    }
+                    return size;
+                }
+
+                get scale() {
+                    let scale = this.getAttribute('scale') ?? 1.0;
+                    for (let code in $mediaQueries) {
+                        if ($mediaQueries[code].matches && this.hasAttribute(`scale-${code}`)) {
+                            scale = this.getAttribute(`scale-${code}`);
+                        }
+                    }
+
+                    scale = parseFloat(scale);
+                    if (isNaN(scale)) {
+                        return 1.0;
+                    }
+                    return scale;
+                }
+
+                get src() {
+                    return this.getAttribute('src') ?? '';
+                }
+            }
+
+            window.customElements.define('item-sprite', ItemSprite);
+        })($mediaQueries);
+
+        function createItemSprite(dom, {index, src, size, scale = null, scaleSm = null, scaleMd = null, scaleLg = null, scaleXl = null}) {
+            const el = dom.createElement('item-sprite');
+            el.setAttribute('index', index);
+            el.setAttribute('src', src);
+            el.setAttribute('size', size);
+            el.setAttribute('scale', scale);
+            el.setAttribute('scale-sm', scaleSm);
+            el.setAttribute('scale-md', scaleMd);
+            el.setAttribute('scale-lg', scaleLg);
+            el.setAttribute('scale-Xl', scaleXl);
+            return el;
+        }
+    </script>
+
+    <template id="recipe-tpl">
+        <style>
+            .recipe {}
+
+            .ingredients {
+                display: flex;
+            }
+
+            .ingredient {
+                padding: 0.125em;
+            }
+
+            .result {
+                padding: 0.25em;
+            }
+
+            .hidden {
+                display: none;
+            }
+        </style>
+        <div class="recipe">
+            <div class="ingredients">
+                <div class="ingredient">
+                    <a>
+                        <item-sprite src="/assets/items.png" size="100" scale="0.3"></item-sprite>
+                    </a>
+                </div>
+                <div class="ingredient hidden">
+                    <a>
+                        <item-sprite src="/assets/items.png" size="100" scale="0.3"></item-sprite>
+                    </a>
+                </div>
+                <div class="ingredient hidden" style="width: 30px; height: 30px;"></div>
+            </div>
+            <div class="result">
+                <a>
+                    <item-sprite src="/assets/items.png" size="100" scale="0.6"></item-sprite>
+                </a>
+            </div>
+        </div>
+    </template>
+    <script>
+        (($dataLoader) => {
+            const TPL_ID = 'recipe-tpl';
+            class RecipeElement extends HTMLElement {
+                static get observedAttributes() {
+                    return ['item', 'first-ingredient', 'second-ingredient'];
+                }
+
+                attributeChangedCallback() {
+                    this.update();
+                }
+
+                connectedCallback() {
+                    this.update();
+                }
+
+                constructor() {
+                    super();
+                    let template = document.getElementById(TPL_ID);
+
+                    this.shadowDOM = this.attachShadow({mode: "open"});
+                    this.shadowDOM.appendChild(template.content.cloneNode(true));
+                }
+
+                get itemId() {
+                    const id = parseInt(this.getAttribute('item'));
+                    return isNaN(id) ? 0 : id;
+                }
+
+                get firstIngredientId() {
+                    const id = parseInt(this.getAttribute('first-ingredient'));
+                    return isNaN(id) ? 0 : id;
+                }
+
+                get secondIngredientId() {
+                    const id = parseInt(this.getAttribute('second-ingredient'));
+                    return isNaN(id) ? 0 : id;
+                }
+
+                async update() {
+                    const updateItemElement = (el, item) => {
+                        el.querySelector('item-sprite').setAttribute('index', (item?.id ?? 0) - 1);
+                        const anchorEl = el.querySelector('a');
+                        anchorEl.setAttribute('href', `#recipes/${item?.id ?? ''}`);
+                        anchorEl.setAttribute('title', item?.name ?? '');
+                    };
+
+                    const items = await $dataLoader.loadItemsData();
+
+                    const itemEl = this.shadowDOM.querySelector('.result');
+                    updateItemElement(itemEl, items[this.itemId - 1] ?? null);
+
+                    const ingredientElList = this.shadowDOM.querySelectorAll('.ingredient');
+                    const firstIngredientEl = ingredientElList[0];
+                    const secondIngredientEl = ingredientElList[1];
+                    const nullIngredientEl = ingredientElList[2];
+
+                    updateItemElement(firstIngredientEl, items[this.firstIngredientId - 1] ?? null);
+
+                    if (this.secondIngredientId > 0) {
+                        nullIngredientEl.classList.add('hidden');
+                        secondIngredientEl.classList.remove('hidden');
+                        updateItemElement(secondIngredientEl, items[this.secondIngredientId - 1] ?? null);
+                    }
+                    else {
+                        secondIngredientEl.classList.add('hidden');
+                        nullIngredientEl.classList.remove('hidden');
+                    }
+                }
+
+            }
+
+            window.customElements.define('app-recipe', RecipeElement);
+        })($dataLoader);
+
+        function createRecipeElement(dom, {item, firstIngredient, secondIngredient = null}) {
+            const el = dom.createElement('app-recipe');
+            el.setAttribute('item', item);
+            el.setAttribute('first-ingredient', firstIngredient);
+            el.setAttribute('second-ingredient', secondIngredient ?? '');
+            return el;
+        }
+    </script>
+
     <script>
         (() => {
             const SECTIONS = {
@@ -455,12 +757,12 @@
             };
 
             function getSectionFromHash() {
-                const sectionId = (window.location.hash ?? '').replace('#', '').split(':')[0];
+                const sectionId = (window.location.hash ?? '').replace('#', '').split('/')[0];
                 return Object.values(SECTIONS).includes(sectionId) ? sectionId : SECTIONS.BADGES;
             }
 
             function getItemIdFromHash() {
-                const id = parseInt((window.location.hash ?? '').split(':')[1] ?? 0)
+                const id = parseInt((window.location.hash ?? '').split('/')[1] ?? 0)
                 return isNaN(id) ? 0 : id;
             }
 
@@ -485,7 +787,7 @@
             };
 
             function updateLists(sectionId) {
-                const listContainers = document.querySelectorAll('.list-container');
+                const listContainers = document.querySelectorAll('.section');
                 for (const listContainerEl of listContainers) {
                     if (listContainerEl.classList.contains(sectionId)) {
                         listContainerEl.classList.remove('hidden');
@@ -505,7 +807,7 @@
                 return badgesPromise;
             }
 
-            async function loadBadgeList() {
+            async function loadBadgeSection() {
                 const data = await loadBadgesData();
 
                 const list = document.querySelector('.list-container.badges .list');
@@ -519,7 +821,7 @@
                     const el = badgeItemTpl.content.cloneNode(true);
                     el.querySelector('item-sprite').setAttribute('index', i);
                     const link = el.querySelector('a');
-                    link.setAttribute('href', `#badges:${badge.id}`);
+                    link.setAttribute('href', `#badges/${badge.id}`);
                     link.setAttribute('title', badge.name);
                     list.appendChild(el);
                     i++;
@@ -530,29 +832,56 @@
             async function loadItemsData() {
                 if (itemsPromise === null) {
                     const datasrc = document.getElementById('itemdata').href;
-                    itemsPromise = fetch(datasrc).then((r) => r.json());
+                    itemsPromise = fetch(datasrc).then((r) => r.json()).then((items) => {
+                        const itemAsIngredientMap = {};
+                        for (let item of items) {
+                            for (let recipe of item.recipes ?? []) {
+                                for (let recipeItem of recipe.items) {
+                                    itemAsIngredientMap[recipeItem] ??= [];
+                                    if (!itemAsIngredientMap[recipeItem].includes(item.id)) {
+                                        itemAsIngredientMap[recipeItem].push(item.id);
+                                    }
+                                }
+                            }
+                        }
+
+                        for (let itemId in itemAsIngredientMap) {
+                            items[itemId - 1].usedIn = itemAsIngredientMap[itemId];
+                        }
+
+                        return items;
+                    });
                 }
                 return itemsPromise;
             }
 
-            async function loadRecipeList() {
+            async function loadRecipeSection() {
                 const data = await loadItemsData();
 
-                const list = document.querySelector('.list-container.recipes .list');
-                while (list.firstChild) {
-                    list.firstChild.remove();
+                const recipeList = document.querySelector('.list-container.recipe-list .list');
+                while (recipeList.firstChild) {
+                    recipeList.firstChild.remove();
                 }
 
-                const recipeItemTpl = document.getElementById('recipe-item-tpl');
+                const itemList = document.querySelector('.list-container.item-list .list');
+                while (itemList.firstChild) {
+                    itemList.firstChild.remove();
+                }
+
+                const itemTpl = document.getElementById('recipe-item-tpl');
                 let i = 0;
-                for (const recipe of data) {
-                    if (recipe.id > 0) {
-                        const el = recipeItemTpl.content.cloneNode(true);
-                        el.querySelector('item-sprite').setAttribute('index', i);
-                        const link = el.querySelector('a');
-                        link.setAttribute('href', `#recipes:${recipe.id ?? 0}`);
-                        link.setAttribute('title', recipe.name);
-                        list.appendChild(el);
+                for (const item of data) {
+                    const el = itemTpl.content.cloneNode(true);
+                    el.querySelector('item-sprite').setAttribute('index', i);
+                    const link = el.querySelector('a');
+                    link.setAttribute('href', `#recipes/${item.id ?? 0}`);
+                    link.setAttribute('title', item.name);
+
+                    if (item?.recipeEntry) {
+                        recipeList.appendChild(el);
+                    }
+                    else {
+                        itemList.appendChild(el);
                     }
                     i++;
                 }
@@ -580,30 +909,76 @@
             async function openBadgeDialog(itemId) {
                 const badges = await loadBadgesData();
                 const index = badges.findIndex(({id}) => id === itemId);
-                const badgeDialog = document.querySelector('.item-dialog.badges');
+                const dialog = document.querySelector('.item-dialog.badges');
                 if (index === -1) {
-                    badgeDialog.close();
+                    dialog.close();
                     return;
                 }
                 const badge = badges[index];
 
-                badgeDialog.querySelector('item-sprite').setAttribute('index', index);
+                dialog.querySelector('item-sprite').setAttribute('index', index);
 
-                badgeDialog.querySelector('.item-title').textContent = badge.name;
+                dialog.querySelector('.item-title').textContent = badge.name;
 
-                badgeDialog.querySelector('.badge-points').textContent = `${badge.bp} BP`;
-                badgeDialog.querySelector('.item-description.badge-effect').textContent = badge.effect.replaceAll(/\. ([A-Z])/g, '.\n\n$1').trim('\n');
-                badgeDialog.querySelector('.item-description.badge-locations').textContent = badge.locations.replaceAll('\n', '\n\n').trim('\n');
+                dialog.querySelector('.badge-points').textContent = `${badge.bp} BP`;
+                dialog.querySelector('.item-description.badge-effect').textContent = badge.effect.replaceAll(/\. ([A-Z])/g, '.\n\n$1').trim('\n');
+                dialog.querySelector('.item-description.badge-locations').textContent = badge.locations.replaceAll('\n', '\n\n').trim('\n');
 
-
-                badgeDialog.showModal();
+                dialog.showModal();
             }
 
-            function openRecipeDialog(itemId) { }
+            async function openRecipeDialog(itemId) {
+                const items = await loadItemsData();
+                const index = items.findIndex(({id}) => id === itemId);
+                const dialog = document.querySelector('.item-dialog.recipes');
+                if (index === -1) {
+                    dialog.close();
+                    return;
+                }
+                const item = items[index];
+
+                dialog.querySelector('item-sprite').setAttribute('index', index);
+                dialog.querySelector('.item-title').textContent = item.name;
+
+                const usedInContainerEl = dialog.querySelector('.item-used-in-container');
+                while (usedInContainerEl.firstChild) {
+                    usedInContainerEl.firstChild.remove();
+                }
+                for (let usedInItemId of (item.usedIn ?? [])) {
+                    const usedInItem = items[usedInItemId - 1] ?? null;
+                    for (const recipe of (usedInItem?.recipes ?? [])) {
+                        if (!recipe.items.includes(item.id)) {
+                            continue;
+                        }
+
+                        const recipeEl = createRecipeElement(document, {
+                            item: usedInItem.id,
+                            firstIngredient: recipe.items[0],
+                            secondIngredient: recipe.items[1] ?? null
+                        });
+                        usedInContainerEl.appendChild(recipeEl);
+                    }
+                }
+
+                const madeWithContainerEl = dialog.querySelector('.item-made-with-container');
+                while (madeWithContainerEl.firstChild) {
+                    madeWithContainerEl.firstChild.remove();
+                }
+                for (let recipe of (item.recipes ?? [])) {
+                    const recipeEl = createRecipeElement(document, {
+                        item: item.id,
+                        firstIngredient: recipe.items[0],
+                        secondIngredient: recipe.items[1] ?? null
+                    });
+                    madeWithContainerEl.appendChild(recipeEl);
+                }
+
+                dialog.showModal();
+            }
 
             // Initialization
-            loadBadgeList();
-            loadRecipeList();
+            loadBadgeSection();
+            loadRecipeSection();
             updateContent();
 
             window.addEventListener('hashchange', updateContent);
@@ -616,7 +991,7 @@
                         dialog.close();
                     }
                 });
-                dialog.querySelector('.dialog-close-button').addEventListener('click', () => dialog.close());
+                dialog.querySelector('.dialog-close-button')?.addEventListener('click', () => dialog.close());
                 dialog.addEventListener('close', () => window.location.hash = `#${getSectionFromHash()}`);
 
                 for (const btn of dialog.querySelectorAll('.tab-button')) {
