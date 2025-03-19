@@ -13,6 +13,6 @@ tmux send-keys -t devserver.0 "cd bin && ./dev_server.sh" ENTER
 tmux new -d -s cli
 tmux send-keys -t cli.0 "cd bin" ENTER
 
-xdg-open localhost:42069 &
+nohup xdg-open localhost:42069 > /dev/null 2>&1 &
 
 tmux attach -t neovim

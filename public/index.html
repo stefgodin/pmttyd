@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>PMTTYD - Badges</title>
+    <title>PMTTYD</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
@@ -21,11 +21,6 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-
-    <link id="badgedata" rel="preload" href="/assets/badges.json" as="fetch" crossorigin="anonymous">
-    <link id="badgesprite" rel="preload" href="/assets/badges.png" as="image">
-    <link id="itemdata" rel="preload" href="/assets/items.json" as="fetch" crossorigin="anonymous">
-    <link id="itemsprite" rel="preload" href="/assets/items.png" as="image">
 
     <!-- xs -->
     <style>
@@ -386,6 +381,7 @@
         </div>
     </nav>
     <main>
+        <app-badges id="badges-section"></app-badges>
         <div class="section list-container badges">
             <template id="badge-item-tpl">
                 <li>

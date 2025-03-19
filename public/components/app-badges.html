@@ -1,0 +1,94 @@
+<template id="app-badges-tpl">
+    <style></style>
+    <div class="section list-container badges">
+        <template id="badge-item-tpl">
+            <li>
+                <a href="" title="">
+                    <app-sprite src="/assets/badges.png" size="100" index="" scale="0.5" scale-md="0.6"></app-sprite>
+                </a>
+            </li>
+        </template>
+        <ul class="list"></ul>
+
+        <dialog class="item-dialog badges">
+            <div class="item-dialog-body">
+                <div class="item-dialog-content">
+                    <app-sprite class="item-sprite" src="/assets/badges.png" size="100" index=""></app-sprite>
+                    <div class="item-title"></div>
+                    <div class="badge-points"></div>
+                </div>
+            </div>
+            <div class="tabs badge-tabs">
+                <button class="tab-button active effect-button" target="badge-effect" type="button" title="Effect">
+                    Effect
+                </button>
+                <button class="tab-button locations-button" target="badge-locations" type="button" title="Locations">
+                    Locations
+                </button>
+            </div>
+            <div class="text-bubble">
+                <div class="tab-item active item-description badge-effect"></div>
+                <div class="tab-item item-description badge-locations"></div>
+                <button type="button" autofocus class="dialog-close-button text-bubble-close-button"></button>
+            </div>
+        </dialog>
+    </div>
+</template>
+<script>
+    $app.defineComponent('app-badges', async () => {
+        await $app.loadComponents('app-sprite');
+        const template = document.getElementById('app-badges-tpl');
+        return class extends HTMLElement {
+            constructor() {
+                this.attachShadow({open: true});
+                this.shadowDOM.append(template.content.cloneNode(true));
+                this.update();
+            }
+
+            update() {
+            }
+
+            async updateList() {
+                const data = await loadBadgesData();
+
+                const list = this.shadowDOM.querySelector('.list-container.badges .list');
+                while (list.firstChild) {
+                    list.firstChild.remove();
+                }
+
+                const badgeItemTpl = this.shadowDOM.getElementById('badge-item-tpl');
+                let i = 0;
+                for (const badge of data) {
+                    const el = badgeItemTpl.content.cloneNode(true);
+                    el.querySelector('item-sprite').setAttribute('index', i);
+                    const link = el.querySelector('a');
+                    link.setAttribute('href', `#badges/${badge.id}`);
+                    link.setAttribute('title', badge.name);
+                    list.appendChild(el);
+                    i++;
+                }
+            }
+
+            async updateDialog(badge) {
+                const badges = await loadBadgesData();
+                const index = badges.findIndex(({id}) => id === itemId);
+                const dialog = document.querySelector('.item-dialog.badges');
+                if (index === -1) {
+                    dialog.close();
+                    return;
+                }
+                const badge = badges[index];
+
+                dialog.querySelector('item-sprite').setAttribute('index', index);
+
+                dialog.querySelector('.item-title').textContent = badge.name;
+
+                dialog.querySelector('.badge-points').textContent = `${badge.bp} BP`;
+                dialog.querySelector('.item-description.badge-effect').textContent = badge.effect.replaceAll(/\. ([A-Z])/g, '.\n\n$1').trim('\n');
+                dialog.querySelector('.item-description.badge-locations').textContent = badge.locations.replaceAll('\n', '\n\n').trim('\n');
+
+                dialog.showModal();
+            }
+        }
+    })();
+</script>
