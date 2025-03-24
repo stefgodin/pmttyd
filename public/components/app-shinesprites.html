@@ -1,0 +1,17 @@
+<template id="app-shinesprites-tpl">
+    <div class="section list-container shinesprites">
+        <ul class="list">
+            <li>Comming Soon</li>
+        </ul>
+    </div>
+</template>
+<script>
+    $app.defineComponent('app-shinesprites', async () => {
+        const template = document.getElementById('app-shinesprites-tpl');
+        return class extends HTMLElement {
+            connectedCallback() {
+                this.append(template.content.cloneNode(true));
+            }
+        };
+    });
+</script>

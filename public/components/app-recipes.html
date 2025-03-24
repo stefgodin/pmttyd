@@ -1,0 +1,172 @@
+<style>
+    .app-recipes {
+        .ingredients {
+            display: flex;
+        }
+
+        .ingredient {
+            padding: 0.125em;
+        }
+
+        .result {
+            padding: 0.25em;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .list ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 1em;
+        }
+    }
+</style>
+<template id="app-recipes-tpl">
+    <div class="app-recipes section recipes">
+        <template class="recipe-item-tpl">
+            <li>
+                <a href="" title="">
+                    <app-sprite src="/assets/items.png" size="100" index="" scale="0.5" scale-md="0.6"></app-sprite>
+                </a>
+            </li>
+        </template>
+        <div class="list-container item-list">
+            <div class="list">
+                <ul></ul>
+                <ul></ul>
+            </div>
+        </div>
+
+        <app-dialog class="item-dialog recipes">
+            <div class="item-dialog-body">
+                <div class="item-dialog-content">
+                    <app-sprite class="item-sprite" src="/assets/items.png" size="100" index=""></app-sprite>
+                    <div class="item-title"></div>
+
+                    <div class="item-used-in-container recipe-list-container"></div>
+                    <hr>
+                    <div class="item-made-with-container recipe-list-container"></div>
+                </div>
+            </div>
+        </app-dialog>
+    </div>
+</template>
+<script>
+    $app.defineComponent('app-recipes', async () => {
+        await $app.loadComponents('app-sprite', 'app-recipe', 'app-dialog');
+        const template = document.getElementById('app-recipes-tpl');
+        return class extends HTMLElement {
+            static get observedAttributes() {
+                return ['item'];
+            }
+
+            attributeChangedCallback() {
+                this.update();
+            }
+
+            connectedCallback() {
+                this.append(template.content.cloneNode(true));
+                this.dialog = this.querySelector('app-dialog');
+                this.dialog.addEventListener('close', () => window.location.hash = `#!/recipes`);
+
+                this.update();
+            }
+
+            async update() {
+                this.updateLists();
+
+                const itemId = parseInt(this.getAttribute('item'));
+                this.updateDialog(isNaN(itemId) ? null : itemId);
+            }
+
+            async updateLists() {
+                const data = await $app.data.loadItemsData();
+
+                const [recipeList, itemList] = this.querySelectorAll('.list-container.item-list ul');
+                while (recipeList.firstChild) {
+                    recipeList.firstChild.remove();
+                }
+
+                while (itemList.firstChild) {
+                    itemList.firstChild.remove();
+                }
+
+                const itemTpl = this.querySelector('.recipe-item-tpl');
+                let i = 0;
+                for (const item of data) {
+                    const el = itemTpl.content.cloneNode(true);
+                    el.querySelector('app-sprite').setAttribute('index', i);
+                    const link = el.querySelector('a');
+                    link.setAttribute('href', `#!/recipes/${item.id ?? 0}`);
+                    link.setAttribute('title', item.name);
+
+                    if (item?.recipeEntry) {
+                        recipeList.append(el);
+                    }
+                    else {
+                        itemList.append(el);
+                    }
+                    i++;
+                }
+            }
+
+            async updateDialog(itemId) {
+                const items = await $app.data.loadItemsData();
+                const index = items.findIndex(({id}) => id === itemId);
+                if (index === -1) {
+                    this.dialog.close();
+                    return;
+                }
+                const item = items[index];
+
+                this.dialog.querySelector('app-sprite').setAttribute('index', index);
+                this.dialog.querySelector('.item-title').textContent = item.name;
+
+                const usedInContainerEl = this.dialog.querySelector('.item-used-in-container');
+                while (usedInContainerEl.firstChild) {
+                    usedInContainerEl.firstChild.remove();
+                }
+                for (let usedInItemId of (item.usedIn ?? [])) {
+                    const usedInItem = items[usedInItemId - 1] ?? null;
+                    for (const recipe of (usedInItem?.recipes ?? [])) {
+                        if (!recipe.items.includes(item.id)) {
+                            continue;
+                        }
+
+                        const recipeEl = this.createRecipeElement({
+                            item: usedInItem.id,
+                            firstIngredient: recipe.items[0],
+                            secondIngredient: recipe.items[1] ?? null
+                        });
+                        usedInContainerEl.appendChild(recipeEl);
+                    }
+                }
+
+                const madeWithContainerEl = this.dialog.querySelector('.item-made-with-container');
+                while (madeWithContainerEl.firstChild) {
+                    madeWithContainerEl.firstChild.remove();
+                }
+                for (let recipe of (item.recipes ?? [])) {
+                    const recipeEl = this.createRecipeElement({
+                        item: item.id,
+                        firstIngredient: recipe.items[0],
+                        secondIngredient: recipe.items[1] ?? null
+                    });
+                    madeWithContainerEl.appendChild(recipeEl);
+                }
+
+                this.dialog.showModal();
+            }
+
+            createRecipeElement({item, firstIngredient, secondIngredient = null}) {
+                const recipeEl = document.createElement('app-recipe');
+                recipeEl.setAttribute('item', item);
+                recipeEl.setAttribute('first-ingredient', firstIngredient);
+                recipeEl.setAttribute('second-ingredient', secondIngredient ?? '');
+                return recipeEl;
+            }
+        };
+    });
+</script>

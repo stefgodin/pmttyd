@@ -1,0 +1,109 @@
+<style>
+    .app-nav {
+        nav {
+            width: 100%;
+            position: absolute;
+            top: 0;
+        }
+
+        .nav-content {
+            width: 100%;
+            max-width: 996px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        nav .nav-section {
+            position: relative;
+            vertical-align: top;
+            display: inline-block;
+            padding-top: 0.5em;
+            padding-bottom: 0.25em;
+            padding-left: 0.25em;
+            padding-right: 0.25em;
+            background-color: var(--color-dark);
+            background-image: linear-gradient(to right, var(--color-base), var(--color-dark));
+            border-radius: 0 0 20px 20px;
+            color: white;
+            font-weight: bolder;
+            font-size: 24px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+        }
+
+        .nav-section:first-child {
+            margin-left: 0.5em;
+        }
+
+        nav .nav-section.active {
+            background-image: linear-gradient(to right, var(--color-light), var(--color-dark));
+            padding-top: 1.25em;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        }
+
+        nav a {
+            text-decoration: none;
+        }
+    }
+</style>
+
+<!-- sm -->
+<style media="(min-width: 576px)">
+    .nav-app {
+        .nav-section:first-child {
+            margin-left: 1em;
+        }
+    }
+</style>
+
+<template id="app-nav-tpl">
+    <div class="app-nav">
+        <nav>
+            <div class="nav-content">
+                <a class="nav-section badges" href="#!/badges" title="Badges">
+                    <app-sprite src="/assets/menu.png" size="100" index="0" scale="0.4" scale-sm="0.5"></app-sprite>
+                </a>
+                <a class="nav-section recipes" href="#!/recipes" title="Recipes">
+                    <app-sprite src="/assets/menu.png" size="100" index="1" scale="0.4" scale-sm="0.5"></app-sprite>
+                </a>
+                <a class="nav-section starpieces" href="#!/starpieces" title="Star Pieces">
+                    <app-sprite src="/assets/menu.png" size="100" index="2" scale="0.4" scale-sm="0.5"></app-sprite>
+                </a>
+                <a class="nav-section shinesprites" href="#!/shinesprites" title="Shine Sprites">
+                    <app-sprite src="/assets/menu.png" size="100" index="3" scale="0.4" scale-sm="0.5"></app-sprite>
+                </a>
+                <a class="nav-section tattlelog" href="#!/tattlelog" title="Tattle Log">
+                    <app-sprite src="/assets/menu.png" size="100" index="4" scale="0.4" scale-sm="0.5"></app-sprite>
+                </a>
+            </div>
+        </nav>
+    </div>
+</template>
+<script>
+    $app.defineComponent('app-nav', async () => {
+        await $app.loadComponents('app-sprite');
+        const template = document.getElementById('app-nav-tpl');
+        return class extends HTMLElement {
+            connectedCallback() {
+                this.append(template.content.cloneNode(true));
+                this.updateListener = () => this.update();
+                window.addEventListener('hashchange', this.updateListener);
+                this.update();
+            }
+
+            disconnectedCallback() {
+                window.removeEventListener('hashchange', this.updateListener);
+            }
+
+            update() {
+                for (const navEl of this.querySelectorAll('a.nav-section')) {
+                    if (window.location.hash.startsWith(navEl.getAttribute('href'))) {
+                        navEl.classList.add('active');
+                    }
+                    else {
+                        navEl.classList.remove('active');
+                    }
+                }
+            }
+        };
+    });
+</script>

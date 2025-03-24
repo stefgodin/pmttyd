@@ -1,7 +1,59 @@
+<style>
+    app-badges {
+        .badge-tabs {
+            position: relative;
+            z-index: 10;
+            margin-top: -3em;
+        }
+
+        .tabs {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tab-button {
+            position: relative;
+            font-family: HeyGorgeous;
+            padding: 0.75em 1em;
+            color: white;
+            background-color: var(--color-dark);
+            border-color: var(--color-base);
+            border-style: outset;
+        }
+
+        .tab-button:hover::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0.05;
+            background-color: black;
+        }
+
+        .tab-button.app-tabs-active,
+        .tab-button:active {
+            color: black;
+            background-color: var(--color-base);
+            border-color: var(--color-base);
+            border-style: inset;
+        }
+
+        .tab-button:first-child {
+            border-radius: 10px 0 0 10px;
+        }
+
+        .tab-button:last-child {
+            border-radius: 0 10px 10px 0;
+        }
+    }
+</style>
 <template id="app-badges-tpl">
-    <style></style>
     <div class="section list-container badges">
-        <template id="badge-item-tpl">
+        <template class="badge-item-tpl">
             <li>
                 <a href="" title="">
                     <app-sprite src="/assets/badges.png" size="100" index="" scale="0.5" scale-md="0.6"></app-sprite>
@@ -10,85 +62,103 @@
         </template>
         <ul class="list"></ul>
 
-        <dialog class="item-dialog badges">
-            <div class="item-dialog-body">
-                <div class="item-dialog-content">
-                    <app-sprite class="item-sprite" src="/assets/badges.png" size="100" index=""></app-sprite>
-                    <div class="item-title"></div>
-                    <div class="badge-points"></div>
+        <app-dialog class="item-dialog badges">
+            <div>
+                <div class="item-dialog-body">
+                    <div class="item-dialog-content">
+                        <app-sprite class="item-sprite" src="/assets/badges.png" size="100" index=""></app-sprite>
+                        <div class="item-title"></div>
+                        <div class="badge-points"></div>
+                    </div>
                 </div>
+                <app-tabs>
+                    <div class="tabs badge-tabs">
+                        <button tab="effect" class="app-tabs-active tab-button effect-button" type="button"
+                            title="Effect">
+                            Effect
+                        </button>
+                        <button tab="locations" class="tab-button locations-button" type="button" title="Locations">
+                            Locations
+                        </button>
+                    </div>
+                    <div class="text-bubble">
+                        <div tab-item="effect" class="app-tabs-active item-description badge-effect"></div>
+                        <div tab-item="locations" class="item-description badge-locations"></div>
+                        <button type="button" autofocus class="dialog-close-button text-bubble-close-button"></button>
+                    </div>
+                </app-tabs>
             </div>
-            <div class="tabs badge-tabs">
-                <button class="tab-button active effect-button" target="badge-effect" type="button" title="Effect">
-                    Effect
-                </button>
-                <button class="tab-button locations-button" target="badge-locations" type="button" title="Locations">
-                    Locations
-                </button>
-            </div>
-            <div class="text-bubble">
-                <div class="tab-item active item-description badge-effect"></div>
-                <div class="tab-item item-description badge-locations"></div>
-                <button type="button" autofocus class="dialog-close-button text-bubble-close-button"></button>
-            </div>
-        </dialog>
+        </app-dialog>
     </div>
 </template>
 <script>
     $app.defineComponent('app-badges', async () => {
-        await $app.loadComponents('app-sprite');
+        await $app.loadComponents('app-sprite', 'app-dialog', 'app-tabs');
         const template = document.getElementById('app-badges-tpl');
         return class extends HTMLElement {
-            constructor() {
-                this.attachShadow({open: true});
-                this.shadowDOM.append(template.content.cloneNode(true));
+            static get observedAttributes() {
+                return ['badge'];
+            }
+
+            attributeChangedCallback() {
+                this.update();
+            }
+
+            connectedCallback() {
+                this.append(template.content.cloneNode(true));
+                this.dialog = this.querySelector('app-dialog');
+                this.dialog.addEventListener('close', () => window.location.hash = `#!/badges`);
+
                 this.update();
             }
 
             update() {
+                this.updateList();
+
+                const badgeId = parseInt(this.getAttribute('badge'));
+                this.updateDialog(isNaN(badgeId) ? null : badgeId);
             }
 
             async updateList() {
-                const data = await loadBadgesData();
+                const data = await $app.data.loadBadgesData();
 
-                const list = this.shadowDOM.querySelector('.list-container.badges .list');
+                const list = this.querySelector('.list-container.badges .list');
                 while (list.firstChild) {
                     list.firstChild.remove();
                 }
 
-                const badgeItemTpl = this.shadowDOM.getElementById('badge-item-tpl');
+                const badgeItemTpl = this.querySelector('template.badge-item-tpl');
                 let i = 0;
                 for (const badge of data) {
                     const el = badgeItemTpl.content.cloneNode(true);
-                    el.querySelector('item-sprite').setAttribute('index', i);
+                    el.querySelector('app-sprite').setAttribute('index', i);
                     const link = el.querySelector('a');
-                    link.setAttribute('href', `#badges/${badge.id}`);
+                    link.setAttribute('href', `#!/badges/${badge.id}`);
                     link.setAttribute('title', badge.name);
                     list.appendChild(el);
                     i++;
                 }
             }
 
-            async updateDialog(badge) {
-                const badges = await loadBadgesData();
-                const index = badges.findIndex(({id}) => id === itemId);
-                const dialog = document.querySelector('.item-dialog.badges');
+            async updateDialog(badgeId) {
+                const badges = await $app.data.loadBadgesData();
+                const index = badges.findIndex(({id}) => id === badgeId);
                 if (index === -1) {
-                    dialog.close();
+                    this.dialog.close();
                     return;
                 }
                 const badge = badges[index];
 
-                dialog.querySelector('item-sprite').setAttribute('index', index);
+                this.dialog.querySelector('app-sprite').setAttribute('index', index);
 
-                dialog.querySelector('.item-title').textContent = badge.name;
+                this.dialog.querySelector('.item-title').textContent = badge.name;
 
-                dialog.querySelector('.badge-points').textContent = `${badge.bp} BP`;
-                dialog.querySelector('.item-description.badge-effect').textContent = badge.effect.replaceAll(/\. ([A-Z])/g, '.\n\n$1').trim('\n');
-                dialog.querySelector('.item-description.badge-locations').textContent = badge.locations.replaceAll('\n', '\n\n').trim('\n');
+                this.dialog.querySelector('.badge-points').textContent = `${badge.bp} BP`;
+                this.dialog.querySelector('.item-description.badge-effect').textContent = badge.effect.replaceAll(/\. ([A-Z])/g, '.\n\n$1').trim('\n');
+                this.dialog.querySelector('.item-description.badge-locations').textContent = badge.locations.replaceAll('\n', '\n\n').trim('\n');
 
-                dialog.showModal();
+                this.dialog.showModal();
             }
         }
-    })();
+    });
 </script>

@@ -24,10 +24,8 @@
 
     <!-- xs -->
     <style>
-        @media not print {
-            img.decoded {
-                background: none !important;
-            }
+        *:not(:defined) {
+            display: none;
         }
 
         @font-face {
@@ -102,10 +100,6 @@
             margin-right: auto;
         }
 
-        .hidden {
-            display: none;
-        }
-
         .list-container {
             background-size: 200px;
             background-color: var(--color-base);
@@ -134,54 +128,6 @@
         .list li:hover {
             transform: scale(1.1);
             filter: drop-shadow(0px 0px 3px) brightness(1.2);
-        }
-
-        nav {
-            width: 100%;
-            position: absolute;
-            top: 0;
-        }
-
-        .nav-content {
-            width: 100%;
-            max-width: 996px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        nav .nav-section {
-            position: relative;
-            vertical-align: top;
-            display: inline-block;
-            padding-top: 0.5em;
-            padding-bottom: 0.25em;
-            padding-left: 0.25em;
-            padding-right: 0.25em;
-            background-color: var(--color-dark);
-            background-image: linear-gradient(to right, var(--color-base), var(--color-dark));
-            border-radius: 0 0 20px 20px;
-            color: white;
-            font-weight: bolder;
-            font-size: 24px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-        }
-
-        .nav-section:first-child {
-            margin-left: 0.5em;
-        }
-
-        nav .nav-section.active {
-            background-image: linear-gradient(to right, var(--color-light), var(--color-dark));
-            padding-top: 1.25em;
-            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-        }
-
-        nav a {
-            text-decoration: none;
-        }
-
-        dialog {
-            scrollbar-width: none;
         }
 
         .item-dialog {
@@ -266,64 +212,6 @@
             padding: 0;
         }
 
-        .tab-item {
-            display: none;
-        }
-
-        .tab-item.active {
-            display: unset;
-        }
-
-        .badge-tabs {
-            position: relative;
-            z-index: 10;
-            margin-top: -3em;
-        }
-
-        .tabs {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .tab-button {
-            position: relative;
-            font-family: HeyGorgeous;
-            padding: 0.75em 1em;
-            color: white;
-            background-color: var(--color-dark);
-            border-color: var(--color-base);
-            border-style: outset;
-        }
-
-        .tab-button:hover::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            opacity: 0.05;
-            background-color: black;
-        }
-
-        .tab-button.active,
-        .tab-button:active {
-            color: black;
-            background-color: var(--color-base);
-            border-color: var(--color-base);
-            border-style: inset;
-        }
-
-        .tab-button:first-child {
-            border-radius: 10px 0 0 10px;
-        }
-
-        .tab-button:last-child {
-            border-radius: 0 10px 10px 0;
-        }
-
         .recipe-list-container {
             display: flex;
             flex-wrap: wrap;
@@ -361,388 +249,12 @@
 </head>
 
 <body>
-    <nav>
-        <div class="nav-content">
-            <a class="nav-section badges" href="#badges" title="Badges">
-                <item-sprite src="/assets/menu.png" size="100" index="0" scale="0.4" scale-sm="0.5"></item-sprite>
-            </a>
-            <a class="nav-section recipes" href="#recipes" title="Recipes">
-                <item-sprite src="/assets/menu.png" size="100" index="1" scale="0.4" scale-sm="0.5"></item-sprite>
-            </a>
-            <a class="nav-section starpieces" href="#starpieces" title="Star Pieces">
-                <item-sprite src="/assets/menu.png" size="100" index="2" scale="0.4" scale-sm="0.5"></item-sprite>
-            </a>
-            <a class="nav-section shinesprites" href="#shinesprites" title="Shine Sprites">
-                <item-sprite src="/assets/menu.png" size="100" index="3" scale="0.4" scale-sm="0.5"></item-sprite>
-            </a>
-            <a class="nav-section tattlelog" href="#tattlelog" title="Tattle Log">
-                <item-sprite src="/assets/menu.png" size="100" index="4" scale="0.4" scale-sm="0.5"></item-sprite>
-            </a>
-        </div>
-    </nav>
-    <main>
-        <app-badges id="badges-section"></app-badges>
-        <div class="section list-container badges">
-            <template id="badge-item-tpl">
-                <li>
-                    <a href="" title="">
-                        <item-sprite src="/assets/badges.png" size="100" index="" scale="0.5"
-                            scale-md="0.6"></item-sprite>
-                    </a>
-                </li>
-            </template>
-            <ul class="list"></ul>
+    <app-nav></app-nav>
+    <main id="router-view"></main>
 
-            <dialog class="item-dialog badges">
-                <div class="item-dialog-body">
-                    <div class="item-dialog-content">
-                        <item-sprite class="item-sprite" src="/assets/badges.png" size="100" index=""></item-sprite>
-                        <div class="item-title"></div>
-                        <div class="badge-points"></div>
-                    </div>
-                </div>
-                <div class="tabs badge-tabs">
-                    <button class="tab-button active effect-button" target="badge-effect" type="button" title="Effect">
-                        Effect
-                    </button>
-                    <button class="tab-button locations-button" target="badge-locations" type="button"
-                        title="Locations">
-                        Locations
-                    </button>
-                </div>
-                <div class="text-bubble">
-                    <div class="tab-item active item-description badge-effect"></div>
-                    <div class="tab-item item-description badge-locations"></div>
-                    <button type="button" autofocus class="dialog-close-button text-bubble-close-button"></button>
-                </div>
-            </dialog>
-        </div>
-        <div class="section recipes">
-            <template id="recipe-item-tpl">
-                <li>
-                    <a href="" title="">
-                        <item-sprite src="/assets/items.png" size="100" index="" scale="0.5"
-                            scale-md="0.6"></item-sprite>
-                    </a>
-                </li>
-            </template>
-            <div class="list-container recipe-list">
-                <ul class="list"></ul>
-            </div>
-            <div class="list-container item-list">
-                <ul class="list"></ul>
-            </div>
-
-            <dialog class="item-dialog recipes">
-                <div class="item-dialog-body">
-                    <div class="item-dialog-content">
-                        <item-sprite class="item-sprite" src="/assets/items.png" size="100" index=""></item-sprite>
-                        <div class="item-title"></div>
-
-                        <div class="item-used-in-container recipe-list-container"></div>
-                        <hr>
-                        <div class="item-made-with-container recipe-list-container"></div>
-                    </div>
-                </div>
-            </dialog>
-        </div>
-        <div class="section list-container starpieces">
-            <ul class="list">
-                <li>Comming Soon</li>
-            </ul>
-        </div>
-        <div class="section list-container shinesprites">
-            <ul class="list">
-                <li>Comming Soon</li>
-            </ul>
-        </div>
-        <div class="section list-container tattlelog">
-            <ul class="list">
-                <li>Comming Soon</li>
-            </ul>
-        </div>
-    </main>
-
+    <script src="/shared.js"></script>
     <script>
-        const $mediaQueries = {
-            sm: window.matchMedia("(min-width: 576px)"),
-            md: window.matchMedia("(min-width: 768px)"),
-            lg: window.matchMedia("(min-width: 992px)"),
-            xl: window.matchMedia("(min-width: 1200px)"),
-        };
-
-        const $dataLoader = {
-            loadBadgesData: (() => {
-                let badgesPromise = null;
-                return async () => {
-                    if (badgesPromise === null) {
-                        const datasrc = document.getElementById('badgedata').href;
-                        badgesPromise = fetch(datasrc).then((r) => r.json());
-                    }
-                    return badgesPromise;
-                }
-            })(),
-            loadItemsData: (() => {
-                let itemsPromise = null;
-                return async () => {
-                    if (itemsPromise === null) {
-                        const datasrc = document.getElementById('itemdata').href;
-                        itemsPromise = fetch(datasrc).then((r) => r.json()).then((items) => {
-                            const itemAsIngredientMap = {};
-                            for (let item of items) {
-                                for (let recipe of item.recipes ?? []) {
-                                    for (let recipeItem of recipe.items) {
-                                        itemAsIngredientMap[recipeItem] ??= [];
-                                        if (!itemAsIngredientMap[recipeItem].includes(item.id)) {
-                                            itemAsIngredientMap[recipeItem].push(item.id);
-                                        }
-                                    }
-                                }
-                            }
-
-                            for (let itemId in itemAsIngredientMap) {
-                                items[itemId - 1].usedIn = itemAsIngredientMap[itemId];
-                            }
-
-                            return items;
-                        });
-                    }
-                    return itemsPromise;
-                }
-            })()
-        };
-    </script>
-
-    <script>
-        (($mediaQueries) => {
-            const spritesheetPromises = {};
-            const getSpritesheetWidth = async (src) => {
-                if (spritesheetPromises[src] !== undefined) {
-                    return spritesheetPromises[src];
-                }
-
-                return spritesheetPromises[src] = new Promise((res, rej) => {
-                    const img = new Image();
-                    img.src = src;
-                    img.onload = () => res(img.width);
-                    img.onerror = (e) => {
-                        delete spritesheetPromises[src];
-                        rej(e);
-                    };
-                });
-            }
-
-            class ItemSprite extends HTMLElement {
-                static get observedAttributes() {
-                    return ['index', 'src', 'size', 'scale', 'scale-sm', 'scale-md', 'scale-lg', 'scale-xl'];
-                }
-
-                attributeChangedCallback() {
-                    this.update();
-                }
-
-                connectedCallback() {
-                    this.update();
-                }
-
-                async update() {
-                    const index = this.index;
-                    const size = this.size;
-                    const src = this.src;
-                    const scale = this.scale;
-
-                    const spritesheetWidth = await getSpritesheetWidth(src);
-
-                    const styleRules = [
-                        (src !== '' ? `background-image: url(${src})` : ''),
-                        `background-color: transparent`,
-                        `background-position: -${index * size * scale}px 0px`,
-                        `background-size: ${scale * spritesheetWidth}px`,
-                        `width: ${size * scale}px`,
-                        `height: ${size * scale}px`,
-                    ];
-                    this.innerHTML = `<div style="${styleRules.join(';')}">`;
-                }
-
-                get index() {
-                    const index = parseInt(this.getAttribute('index') ?? 0);
-                    if (isNaN(index) || index < 0) {
-                        return 0;
-                    }
-                    return index;
-                }
-
-                get size() {
-                    const size = parseInt(this.getAttribute('size') ?? 0);
-                    if (isNaN(size) || size < 0) {
-                        return 0;
-                    }
-                    return size;
-                }
-
-                get scale() {
-                    let scale = this.getAttribute('scale') ?? 1.0;
-                    for (let code in $mediaQueries) {
-                        if ($mediaQueries[code].matches && this.hasAttribute(`scale-${code}`)) {
-                            scale = this.getAttribute(`scale-${code}`);
-                        }
-                    }
-
-                    scale = parseFloat(scale);
-                    if (isNaN(scale)) {
-                        return 1.0;
-                    }
-                    return scale;
-                }
-
-                get src() {
-                    return this.getAttribute('src') ?? '';
-                }
-            }
-
-            window.customElements.define('item-sprite', ItemSprite);
-        })($mediaQueries);
-
-        function createItemSprite(dom, {index, src, size, scale = null, scaleSm = null, scaleMd = null, scaleLg = null, scaleXl = null}) {
-            const el = dom.createElement('item-sprite');
-            el.setAttribute('index', index);
-            el.setAttribute('src', src);
-            el.setAttribute('size', size);
-            el.setAttribute('scale', scale);
-            el.setAttribute('scale-sm', scaleSm);
-            el.setAttribute('scale-md', scaleMd);
-            el.setAttribute('scale-lg', scaleLg);
-            el.setAttribute('scale-Xl', scaleXl);
-            return el;
-        }
-    </script>
-
-    <template id="recipe-tpl">
-        <style>
-            .recipe {}
-
-            .ingredients {
-                display: flex;
-            }
-
-            .ingredient {
-                padding: 0.125em;
-            }
-
-            .result {
-                padding: 0.25em;
-            }
-
-            .hidden {
-                display: none;
-            }
-        </style>
-        <div class="recipe">
-            <div class="ingredients">
-                <div class="ingredient">
-                    <a>
-                        <item-sprite src="/assets/items.png" size="100" scale="0.3"></item-sprite>
-                    </a>
-                </div>
-                <div class="ingredient hidden">
-                    <a>
-                        <item-sprite src="/assets/items.png" size="100" scale="0.3"></item-sprite>
-                    </a>
-                </div>
-                <div class="ingredient hidden" style="width: 30px; height: 30px;"></div>
-            </div>
-            <div class="result">
-                <a>
-                    <item-sprite src="/assets/items.png" size="100" scale="0.6"></item-sprite>
-                </a>
-            </div>
-        </div>
-    </template>
-    <script>
-        (($dataLoader) => {
-            const TPL_ID = 'recipe-tpl';
-            class RecipeElement extends HTMLElement {
-                static get observedAttributes() {
-                    return ['item', 'first-ingredient', 'second-ingredient'];
-                }
-
-                attributeChangedCallback() {
-                    this.update();
-                }
-
-                connectedCallback() {
-                    this.update();
-                }
-
-                constructor() {
-                    super();
-                    let template = document.getElementById(TPL_ID);
-
-                    this.shadowDOM = this.attachShadow({mode: "open"});
-                    this.shadowDOM.appendChild(template.content.cloneNode(true));
-                }
-
-                get itemId() {
-                    const id = parseInt(this.getAttribute('item'));
-                    return isNaN(id) ? 0 : id;
-                }
-
-                get firstIngredientId() {
-                    const id = parseInt(this.getAttribute('first-ingredient'));
-                    return isNaN(id) ? 0 : id;
-                }
-
-                get secondIngredientId() {
-                    const id = parseInt(this.getAttribute('second-ingredient'));
-                    return isNaN(id) ? 0 : id;
-                }
-
-                async update() {
-                    const updateItemElement = (el, item) => {
-                        el.querySelector('item-sprite').setAttribute('index', (item?.id ?? 0) - 1);
-                        const anchorEl = el.querySelector('a');
-                        anchorEl.setAttribute('href', `#recipes/${item?.id ?? ''}`);
-                        anchorEl.setAttribute('title', item?.name ?? '');
-                    };
-
-                    const items = await $dataLoader.loadItemsData();
-
-                    const itemEl = this.shadowDOM.querySelector('.result');
-                    updateItemElement(itemEl, items[this.itemId - 1] ?? null);
-
-                    const ingredientElList = this.shadowDOM.querySelectorAll('.ingredient');
-                    const firstIngredientEl = ingredientElList[0];
-                    const secondIngredientEl = ingredientElList[1];
-                    const nullIngredientEl = ingredientElList[2];
-
-                    updateItemElement(firstIngredientEl, items[this.firstIngredientId - 1] ?? null);
-
-                    if (this.secondIngredientId > 0) {
-                        nullIngredientEl.classList.add('hidden');
-                        secondIngredientEl.classList.remove('hidden');
-                        updateItemElement(secondIngredientEl, items[this.secondIngredientId - 1] ?? null);
-                    }
-                    else {
-                        secondIngredientEl.classList.add('hidden');
-                        nullIngredientEl.classList.remove('hidden');
-                    }
-                }
-
-            }
-
-            window.customElements.define('app-recipe', RecipeElement);
-        })($dataLoader);
-
-        function createRecipeElement(dom, {item, firstIngredient, secondIngredient = null}) {
-            const el = dom.createElement('app-recipe');
-            el.setAttribute('item', item);
-            el.setAttribute('first-ingredient', firstIngredient);
-            el.setAttribute('second-ingredient', secondIngredient ?? '');
-            return el;
-        }
-    </script>
-
-    <script>
+        $app.loadComponents('app-nav');
         (() => {
             const SECTIONS = {
                 BADGES: "badges",
@@ -752,268 +264,83 @@
                 TATTLELOG: "tattlelog",
             };
 
-            function getSectionFromHash() {
-                const sectionId = (window.location.hash ?? '').replace('#', '').split('/')[0];
-                return Object.values(SECTIONS).includes(sectionId) ? sectionId : SECTIONS.BADGES;
-            }
-
-            function getItemIdFromHash() {
-                const id = parseInt((window.location.hash ?? '').split('/')[1] ?? 0)
-                return isNaN(id) ? 0 : id;
-            }
-
-            function updateContent() {
-                const sectionId = getSectionFromHash();
-                const itemId = getItemIdFromHash();
-                updateNav(sectionId);
-                updateLists(sectionId);
-                updateDialogs(sectionId, itemId);
-            };
-
-            function updateNav(sectionId) {
-                const sections = document.querySelectorAll('.nav-section');
-                for (const sectionEl of sections) {
-                    if (sectionEl.classList.contains(sectionId)) {
-                        sectionEl.classList.add('active');
+            let activeRoute = null;
+            const routerViewEl = document.getElementById('router-view');
+            const ROUTES = [
+                {
+                    resolve: (segments) => segments[0] === 'badges',
+                    setup: async () => {
+                        await $app.loadComponent('app-badges');
+                        const badgesEl = document.createElement('app-badges');
+                        routerViewEl.replaceChildren(badgesEl);
+                    },
+                    change: (segments) => {
+                        routerViewEl.querySelector('app-badges').setAttribute('badge', segments[1] ?? '');
                     }
-                    else {
-                        sectionEl.classList.remove('active');
+                },
+                {
+                    resolve: (segments) => segments[0] === 'recipes',
+                    setup: async () => {
+                        await $app.loadComponent('app-recipes');
+                        const recipesEl = document.createElement('app-recipes');
+                        routerViewEl.replaceChildren(recipesEl);
+                    },
+                    change: (segments) => {
+                        routerViewEl.querySelector('app-recipes').setAttribute('item', segments[1] ?? '');
                     }
-                }
-            };
-
-            function updateLists(sectionId) {
-                const listContainers = document.querySelectorAll('.section');
-                for (const listContainerEl of listContainers) {
-                    if (listContainerEl.classList.contains(sectionId)) {
-                        listContainerEl.classList.remove('hidden');
+                },
+                {
+                    resolve: (segments) => segments[0] === 'starpieces',
+                    setup: async () => {
+                        await $app.loadComponent('app-starpieces');
+                        const starpiecesEl = document.createElement('app-starpieces');
+                        routerViewEl.replaceChildren(starpiecesEl);
                     }
-                    else {
-                        listContainerEl.classList.add('hidden');
+                },
+                {
+                    resolve: (segments) => segments[0] === 'shinesprites',
+                    setup: async () => {
+                        await $app.loadComponent('app-shinesprites');
+                        const shinespritesEl = document.createElement('app-shinesprites');
+                        routerViewEl.replaceChildren(shinespritesEl);
                     }
-                }
-            };
-
-            let badgesPromise = null;
-            async function loadBadgesData() {
-                if (badgesPromise === null) {
-                    const datasrc = document.getElementById('badgedata').href;
-                    badgesPromise = fetch(datasrc).then((r) => r.json());
-                }
-                return badgesPromise;
-            }
-
-            async function loadBadgeSection() {
-                const data = await loadBadgesData();
-
-                const list = document.querySelector('.list-container.badges .list');
-                while (list.firstChild) {
-                    list.firstChild.remove();
-                }
-
-                const badgeItemTpl = document.getElementById('badge-item-tpl');
-                let i = 0;
-                for (const badge of data) {
-                    const el = badgeItemTpl.content.cloneNode(true);
-                    el.querySelector('item-sprite').setAttribute('index', i);
-                    const link = el.querySelector('a');
-                    link.setAttribute('href', `#badges/${badge.id}`);
-                    link.setAttribute('title', badge.name);
-                    list.appendChild(el);
-                    i++;
-                }
-            }
-
-            let itemsPromise = null;
-            async function loadItemsData() {
-                if (itemsPromise === null) {
-                    const datasrc = document.getElementById('itemdata').href;
-                    itemsPromise = fetch(datasrc).then((r) => r.json()).then((items) => {
-                        const itemAsIngredientMap = {};
-                        for (let item of items) {
-                            for (let recipe of item.recipes ?? []) {
-                                for (let recipeItem of recipe.items) {
-                                    itemAsIngredientMap[recipeItem] ??= [];
-                                    if (!itemAsIngredientMap[recipeItem].includes(item.id)) {
-                                        itemAsIngredientMap[recipeItem].push(item.id);
-                                    }
-                                }
-                            }
-                        }
-
-                        for (let itemId in itemAsIngredientMap) {
-                            items[itemId - 1].usedIn = itemAsIngredientMap[itemId];
-                        }
-
-                        return items;
-                    });
-                }
-                return itemsPromise;
-            }
-
-            async function loadRecipeSection() {
-                const data = await loadItemsData();
-
-                const recipeList = document.querySelector('.list-container.recipe-list .list');
-                while (recipeList.firstChild) {
-                    recipeList.firstChild.remove();
-                }
-
-                const itemList = document.querySelector('.list-container.item-list .list');
-                while (itemList.firstChild) {
-                    itemList.firstChild.remove();
-                }
-
-                const itemTpl = document.getElementById('recipe-item-tpl');
-                let i = 0;
-                for (const item of data) {
-                    const el = itemTpl.content.cloneNode(true);
-                    el.querySelector('item-sprite').setAttribute('index', i);
-                    const link = el.querySelector('a');
-                    link.setAttribute('href', `#recipes/${item.id ?? 0}`);
-                    link.setAttribute('title', item.name);
-
-                    if (item?.recipeEntry) {
-                        recipeList.appendChild(el);
+                },
+                {
+                    resolve: (segments) => segments[0] === 'tattlelog',
+                    setup: async () => {
+                        await $app.loadComponent('app-tattlelog');
+                        const tattlelogEl = document.createElement('app-tattlelog');
+                        routerViewEl.replaceChildren(tattlelogEl);
                     }
-                    else {
-                        itemList.appendChild(el);
-                    }
-                    i++;
-                }
-            }
+                },
+                {
+                    // Catch all route
+                    resolve: () => true,
+                    change: () => window.location.hash = '#!/badges'
+                },
+            ];
 
-            function updateDialogs(sectionId, itemId) {
-                if (itemId === 0) {
-                    const dialogs = document.querySelectorAll('.item-dialog');
-                    for (const dialog of dialogs) {
-                        dialog.close();
-                    }
+            const handleRoute = async () => {
+                const segments = (window.location.hash ?? '').replace('#!', '').split('/').filter(Boolean);
+                const nextRoute = ROUTES.find((r) => r.resolve(segments)) ?? null;
+                if (nextRoute === null) {
                     return;
                 }
 
-                switch (sectionId) {
-                    case SECTIONS.BADGES:
-                        openBadgeDialog(itemId);
-                        break;
-                    case SECTIONS.RECIPES:
-                        openRecipeDialog(itemId);
-                        break;
-                }
-            }
-
-            async function openBadgeDialog(itemId) {
-                const badges = await loadBadgesData();
-                const index = badges.findIndex(({id}) => id === itemId);
-                const dialog = document.querySelector('.item-dialog.badges');
-                if (index === -1) {
-                    dialog.close();
-                    return;
-                }
-                const badge = badges[index];
-
-                dialog.querySelector('item-sprite').setAttribute('index', index);
-
-                dialog.querySelector('.item-title').textContent = badge.name;
-
-                dialog.querySelector('.badge-points').textContent = `${badge.bp} BP`;
-                dialog.querySelector('.item-description.badge-effect').textContent = badge.effect.replaceAll(/\. ([A-Z])/g, '.\n\n$1').trim('\n');
-                dialog.querySelector('.item-description.badge-locations').textContent = badge.locations.replaceAll('\n', '\n\n').trim('\n');
-
-                dialog.showModal();
-            }
-
-            async function openRecipeDialog(itemId) {
-                const items = await loadItemsData();
-                const index = items.findIndex(({id}) => id === itemId);
-                const dialog = document.querySelector('.item-dialog.recipes');
-                if (index === -1) {
-                    dialog.close();
-                    return;
-                }
-                const item = items[index];
-
-                dialog.querySelector('item-sprite').setAttribute('index', index);
-                dialog.querySelector('.item-title').textContent = item.name;
-
-                const usedInContainerEl = dialog.querySelector('.item-used-in-container');
-                while (usedInContainerEl.firstChild) {
-                    usedInContainerEl.firstChild.remove();
-                }
-                for (let usedInItemId of (item.usedIn ?? [])) {
-                    const usedInItem = items[usedInItemId - 1] ?? null;
-                    for (const recipe of (usedInItem?.recipes ?? [])) {
-                        if (!recipe.items.includes(item.id)) {
-                            continue;
-                        }
-
-                        const recipeEl = createRecipeElement(document, {
-                            item: usedInItem.id,
-                            firstIngredient: recipe.items[0],
-                            secondIngredient: recipe.items[1] ?? null
-                        });
-                        usedInContainerEl.appendChild(recipeEl);
+                if (activeRoute !== nextRoute) {
+                    activeRoute = nextRoute;
+                    if (typeof activeRoute.setup === "function") {
+                        await Promise.resolve(activeRoute.setup(segments));
                     }
                 }
 
-                const madeWithContainerEl = dialog.querySelector('.item-made-with-container');
-                while (madeWithContainerEl.firstChild) {
-                    madeWithContainerEl.firstChild.remove();
+                if (typeof activeRoute.change === "function") {
+                    await Promise.resolve(activeRoute.change(segments));
                 }
-                for (let recipe of (item.recipes ?? [])) {
-                    const recipeEl = createRecipeElement(document, {
-                        item: item.id,
-                        firstIngredient: recipe.items[0],
-                        secondIngredient: recipe.items[1] ?? null
-                    });
-                    madeWithContainerEl.appendChild(recipeEl);
-                }
+            };
 
-                dialog.showModal();
-            }
-
-            // Initialization
-            loadBadgeSection();
-            loadRecipeSection();
-            updateContent();
-
-            window.addEventListener('hashchange', updateContent);
-
-            for (const dialog of document.querySelectorAll('dialog.item-dialog')) {
-                dialog.addEventListener('click', function (event) {
-                    const {top, left, width, height} = dialog.getBoundingClientRect();
-                    const [x, y] = [event.clientX, event.clientY];
-                    if (top > y || y > (top + height) || left > x || x > (left + width)) {
-                        dialog.close();
-                    }
-                });
-                dialog.querySelector('.dialog-close-button')?.addEventListener('click', () => dialog.close());
-                dialog.addEventListener('close', () => window.location.hash = `#${getSectionFromHash()}`);
-
-                for (const btn of dialog.querySelectorAll('.tab-button')) {
-                    btn.addEventListener('click', function (event) {
-                        event.preventDefault();
-                        for (const btn of dialog.querySelectorAll('.tab-button')) {
-                            if (btn === event.target) {
-                                btn.classList.add('active');
-                            }
-                            else {
-                                btn.classList.remove('active');
-                            }
-                        }
-
-                        const targetClass = event.target.getAttribute('target');
-                        for (const el of dialog.querySelectorAll('.tab-item')) {
-                            if (el.classList.contains(targetClass)) {
-                                el.classList.add('active');
-                            }
-                            else {
-                                el.classList.remove('active');
-                            }
-                        }
-                    });
-                }
-            }
+            window.addEventListener('hashchange', handleRoute);
+            handleRoute();
         })();
     </script>
 </body>

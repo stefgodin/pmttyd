@@ -1,3 +1,13 @@
+<style>
+    @media not print {
+        .app-sprite img.decoded {
+            background: none !important;
+        }
+    }
+</style>
+<template id="app-sprite-tpl">
+    <div class="app-sprite"></div>
+</template>
 <script>
     $app.defineComponent('app-sprite', () => {
         const spritesheetPromises = {};
@@ -18,6 +28,7 @@
         }
 
         const mediaQueries = $app.mediaQueries;
+        const template = document.getElementById('app-sprite-tpl');
 
         return class extends HTMLElement {
             static get observedAttributes() {
@@ -30,26 +41,30 @@
             }
 
             connectedCallback() {
+                this.append(template.content.cloneNode(true));
                 this.update();
             }
 
             async update() {
+                const spriteEl = this.querySelector('div');
+                if (!spriteEl) {
+                    return;
+                }
+
                 const index = this.index;
                 const size = this.size;
                 const src = this.src;
                 const scale = this.scale;
 
-                const spritesheetWidth = await getSpritesheetWidth(src);
+                spriteEl.style.width = `${size * scale}px`;
+                spriteEl.style.height = `${size * scale}px`;
+                spriteEl.style.backgroundColor = 'transparent';
 
-                const styleRules = [
-                    (src !== '' ? `background-image: url(${src})` : ''),
-                    `background-color: transparent`,
-                    `background-position: -${index * size * scale}px 0px`,
-                    `background-size: ${scale * spritesheetWidth}px`,
-                    `width: ${size * scale}px`,
-                    `height: ${size * scale}px`,
-                ];
-                this.innerHTML = `<div style="${styleRules.join(';')}">`;
+                const spritesheetWidth = await getSpritesheetWidth(src);
+                spriteEl.style.backgroundSize = `${scale * spritesheetWidth}px`;
+                spriteEl.style.backgroundImage = `url(${src})`;
+                spriteEl.style.backgroundPosition = `-${index * size * scale}px 0px`;
+
             }
 
             get index() {
