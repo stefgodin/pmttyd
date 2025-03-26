@@ -1,12 +1,15 @@
 <style>
-    .app-nav {
+    app-nav {
+        display: block;
+
         nav {
             width: 100%;
-            position: absolute;
-            top: 0;
         }
 
         .nav-content {
+            display: flex;
+            align-items: start;
+            column-gap: 0.25em;
             width: 100%;
             max-width: 996px;
             margin-left: auto;
@@ -16,7 +19,6 @@
         nav .nav-section {
             position: relative;
             vertical-align: top;
-            display: inline-block;
             padding-top: 0.5em;
             padding-bottom: 0.25em;
             padding-left: 0.25em;
@@ -41,6 +43,7 @@
         }
 
         nav a {
+            display: block;
             text-decoration: none;
         }
     }
@@ -48,7 +51,7 @@
 
 <!-- sm -->
 <style media="(min-width: 576px)">
-    .nav-app {
+    app-nav {
         .nav-section:first-child {
             margin-left: 1em;
         }
@@ -56,27 +59,25 @@
 </style>
 
 <template id="app-nav-tpl">
-    <div class="app-nav">
-        <nav>
-            <div class="nav-content">
-                <a class="nav-section badges" href="#!/badges" title="Badges">
-                    <app-sprite src="/assets/menu.png" size="100" index="0" scale="0.4" scale-sm="0.5"></app-sprite>
-                </a>
-                <a class="nav-section recipes" href="#!/recipes" title="Recipes">
-                    <app-sprite src="/assets/menu.png" size="100" index="1" scale="0.4" scale-sm="0.5"></app-sprite>
-                </a>
-                <a class="nav-section starpieces" href="#!/starpieces" title="Star Pieces">
-                    <app-sprite src="/assets/menu.png" size="100" index="2" scale="0.4" scale-sm="0.5"></app-sprite>
-                </a>
-                <a class="nav-section shinesprites" href="#!/shinesprites" title="Shine Sprites">
-                    <app-sprite src="/assets/menu.png" size="100" index="3" scale="0.4" scale-sm="0.5"></app-sprite>
-                </a>
-                <a class="nav-section tattlelog" href="#!/tattlelog" title="Tattle Log">
-                    <app-sprite src="/assets/menu.png" size="100" index="4" scale="0.4" scale-sm="0.5"></app-sprite>
-                </a>
-            </div>
-        </nav>
-    </div>
+    <nav>
+        <div class="nav-content">
+            <a class="nav-section badges" href="#!/badges" title="Badges">
+                <app-sprite src="/assets/menu.png" size="100" index="0" scale="0.4" scale-sm="0.5"></app-sprite>
+            </a>
+            <a class="nav-section recipes" href="#!/recipes" title="Recipes">
+                <app-sprite src="/assets/menu.png" size="100" index="1" scale="0.4" scale-sm="0.5"></app-sprite>
+            </a>
+            <a class="nav-section starpieces" href="#!/starpieces" title="Star Pieces">
+                <app-sprite src="/assets/menu.png" size="100" index="2" scale="0.4" scale-sm="0.5"></app-sprite>
+            </a>
+            <a class="nav-section shinesprites" href="#!/shinesprites" title="Shine Sprites">
+                <app-sprite src="/assets/menu.png" size="100" index="3" scale="0.4" scale-sm="0.5"></app-sprite>
+            </a>
+            <a class="nav-section tattlelog" href="#!/tattlelog" title="Tattle Log">
+                <app-sprite src="/assets/menu.png" size="100" index="4" scale="0.4" scale-sm="0.5"></app-sprite>
+            </a>
+        </div>
+    </nav>
 </template>
 <script>
     $app.defineComponent('app-nav', async () => {

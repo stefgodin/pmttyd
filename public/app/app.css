@@ -1,0 +1,87 @@
+*:not(:defined) {
+    display: none;
+}
+
+@font-face {
+    font-family: 'HeyGorgeous';
+    src: url('/static/heygorgeous.ttf');
+}
+
+:root {
+    --color-light: white;
+    --color-base: grey;
+    --color-dark: black;
+
+    font-family: Verdana, sans-serif;
+}
+
+.badges {
+    --color-light: #c5fd81;
+    --color-base: #41de30;
+    --color-dark: #259a19;
+}
+
+.recipes {
+    --color-light: #e39bbf;
+    --color-base: #da7aaa;
+    --color-dark: #b43273;
+}
+
+.free-red {
+    --color-light: #e7a698;
+    --color-base: #da7762;
+    --color-dark: #d05840;
+}
+
+.starpieces {
+    --color-light: #ebd193;
+    --color-base: #e6c576;
+    --color-dark: #c29323;
+}
+
+.shinesprites {
+    --color-light: #9abce5;
+    --color-base: #558ed3;
+    --color-dark: #2f6cb6;
+}
+
+.tattlelog {
+    --color-light: #bfb2cd;
+    --color-base: #876fa1;
+    --color-dark: #59476c;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+body {
+    font-family: HeyGorgeous;
+    background-image: url('/static/background_1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+.section {
+    background-size: 200px;
+    background-color: var(--color-base);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.section-content {
+    padding: 1em;
+    background-color: transparent;
+    background-image: url('/static/items_background.png');
+    background-size: 200px;
+    border-radius: 10px;
+    background-color: var(--color-light);
+}

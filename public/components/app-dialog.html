@@ -1,10 +1,17 @@
 <style>
-    .app-dialog {
-        background: transparent;
-        border: 0;
-        outline: none;
-        margin: 0 auto;
-        scrollbar-width: none;
+    app-dialog {
+        dialog::backdrop {
+            background-color: black;
+            opacity: 0.4;
+        }
+
+        dialog {
+            background: transparent;
+            border: 0;
+            outline: none;
+            margin: 0 auto;
+            scrollbar-width: none;
+        }
     }
 </style>
 <template id="app-dialog-tpl">

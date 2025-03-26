@@ -1,13 +1,14 @@
 <style>
     @media not print {
-        .app-sprite img.decoded {
+        app-sprite img.decoded {
             background: none !important;
         }
     }
+
+    app-sprite {
+        display: block;
+    }
 </style>
-<template id="app-sprite-tpl">
-    <div class="app-sprite"></div>
-</template>
 <script>
     $app.defineComponent('app-sprite', () => {
         const spritesheetPromises = {};
@@ -28,7 +29,6 @@
         }
 
         const mediaQueries = $app.mediaQueries;
-        const template = document.getElementById('app-sprite-tpl');
 
         return class extends HTMLElement {
             static get observedAttributes() {
@@ -41,29 +41,23 @@
             }
 
             connectedCallback() {
-                this.append(template.content.cloneNode(true));
                 this.update();
             }
 
             async update() {
-                const spriteEl = this.querySelector('div');
-                if (!spriteEl) {
-                    return;
-                }
-
                 const index = this.index;
                 const size = this.size;
                 const src = this.src;
                 const scale = this.scale;
 
-                spriteEl.style.width = `${size * scale}px`;
-                spriteEl.style.height = `${size * scale}px`;
-                spriteEl.style.backgroundColor = 'transparent';
+                this.style.width = `${size * scale}px`;
+                this.style.height = `${size * scale}px`;
+                this.style.backgroundColor = 'transparent';
 
                 const spritesheetWidth = await getSpritesheetWidth(src);
-                spriteEl.style.backgroundSize = `${scale * spritesheetWidth}px`;
-                spriteEl.style.backgroundImage = `url(${src})`;
-                spriteEl.style.backgroundPosition = `-${index * size * scale}px 0px`;
+                this.style.backgroundSize = `${scale * spritesheetWidth}px`;
+                this.style.backgroundImage = `url(${src})`;
+                this.style.backgroundPosition = `-${index * size * scale}px 0px`;
 
             }
 

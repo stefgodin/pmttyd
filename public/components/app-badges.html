@@ -49,18 +49,94 @@
         .tab-button:last-child {
             border-radius: 0 10px 10px 0;
         }
+
+        .badge-points {
+            font-family: HeyGorgeous;
+            margin-bottom: 1.5em;
+        }
+
+        .text-bubble {
+            font-size: 0.75em;
+            text-align: left;
+            position: relative;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: inset 0px -5px 5px 0px rgba(0, 0, 0, 0.5);
+            padding: 2em 1em;
+            margin-top: -10px;
+            margin-left: 0.15em;
+            margin-right: 0.15em;
+            margin-bottom: 20px;
+        }
+
+        .text-bubble-close-button {
+            bottom: 0;
+            cursor: pointer;
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background-image: url('/static/small_star.png');
+            background-color: transparent;
+            border: 0;
+            height: 60px;
+            width: 60px;
+            padding: 0;
+        }
+
+        .item-dialog {
+            border: none;
+            background-color: transparent;
+        }
+
+        .item-dialog.badges {
+            max-width: 600px;
+        }
+
+        .item-dialog-body {
+            padding: 20px 0;
+            background-size: 200px;
+            background-color: var(--color-base);
+            border-radius: 10px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        }
+
+        .item-dialog-content {
+            text-align: center;
+            background-image: url('/static/items_background.png');
+            background-size: 200px;
+            padding: 1em;
+            background-color: var(--color-light);
+        }
+
+        .item-dialog-content app-sprite {
+            display: inline-block;
+        }
+
+        .item-title {
+            font-size: 1.25em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .item-description {
+            white-space: pre-line;
+        }
+    }
+</style>
+<!-- sm -->
+<style media="(min-width: 576px)">
+    app-badges {
+        .text-bubble {
+            margin-left: 1em;
+            margin-right: 1em;
+        }
     }
 </style>
 <template id="app-badges-tpl">
-    <div class="section list-container badges">
-        <template class="badge-item-tpl">
-            <li>
-                <a href="" title="">
-                    <app-sprite src="/assets/badges.png" size="100" index="" scale="0.5" scale-md="0.6"></app-sprite>
-                </a>
-            </li>
-        </template>
-        <ul class="list"></ul>
+    <div class="badges">
+        <div class="section">
+            <app-list class="section-content"></app-list>
+        </div>
 
         <app-dialog class="item-dialog badges">
             <div>
@@ -93,7 +169,7 @@
 </template>
 <script>
     $app.defineComponent('app-badges', async () => {
-        await $app.loadComponents('app-sprite', 'app-dialog', 'app-tabs');
+        await $app.loadComponents('app-sprite', 'app-dialog', 'app-tabs', 'app-list');
         const template = document.getElementById('app-badges-tpl');
         return class extends HTMLElement {
             static get observedAttributes() {
@@ -122,22 +198,13 @@
             async updateList() {
                 const data = await $app.data.loadBadgesData();
 
-                const list = this.querySelector('.list-container.badges .list');
-                while (list.firstChild) {
-                    list.firstChild.remove();
-                }
-
-                const badgeItemTpl = this.querySelector('template.badge-item-tpl');
-                let i = 0;
-                for (const badge of data) {
-                    const el = badgeItemTpl.content.cloneNode(true);
-                    el.querySelector('app-sprite').setAttribute('index', i);
-                    const link = el.querySelector('a');
-                    link.setAttribute('href', `#!/badges/${badge.id}`);
-                    link.setAttribute('title', badge.name);
-                    list.appendChild(el);
-                    i++;
-                }
+                const listEl = this.querySelector('app-list');
+                listEl.setItems(data.map((badge, i) => ({
+                    link: `#!/badges/${badge.id}`,
+                    title: badge.name,
+                    spriteSrc: '/assets/badges.png',
+                    spriteIndex: i
+                })));
             }
 
             async updateDialog(badgeId) {

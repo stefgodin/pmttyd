@@ -1,5 +1,5 @@
 <style>
-    .app-recipes {
+    app-recipes {
         .ingredients {
             display: flex;
         }
@@ -16,26 +16,51 @@
             display: none;
         }
 
-        .list ul {
-            list-style-type: none;
-            margin: 0;
+        app-list:not(:first-child) {
+            margin-top: 10px;
+        }
+
+        .item-dialog {
+            border: none;
+            background-color: transparent;
+        }
+
+        .item-dialog-body {
+            padding: 20px 0;
+            background-size: 200px;
+            background-color: var(--color-base);
+            border-radius: 10px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        }
+
+        .item-dialog-content {
+            background-image: url('/static/items_background.png');
+            background-size: 200px;
             padding: 1em;
+            background-color: var(--color-light);
+        }
+
+        .item-sprite {
+            display: inline-block;
+        }
+
+        .item-title {
+            font-size: 1.25em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .item-description {
+            white-space: pre-line;
         }
     }
 </style>
 <template id="app-recipes-tpl">
-    <div class="app-recipes section recipes">
-        <template class="recipe-item-tpl">
-            <li>
-                <a href="" title="">
-                    <app-sprite src="/assets/items.png" size="100" index="" scale="0.5" scale-md="0.6"></app-sprite>
-                </a>
-            </li>
-        </template>
-        <div class="list-container item-list">
-            <div class="list">
-                <ul></ul>
-                <ul></ul>
+    <div class="recipes">
+        <div class="section item-list">
+            <div>
+                <app-list class="section-content"></app-list>
+                <app-list class="section-content"></app-list>
             </div>
         </div>
 
@@ -55,7 +80,7 @@
 </template>
 <script>
     $app.defineComponent('app-recipes', async () => {
-        await $app.loadComponents('app-sprite', 'app-recipe', 'app-dialog');
+        await $app.loadComponents('app-sprite', 'app-recipe', 'app-dialog', 'app-list');
         const template = document.getElementById('app-recipes-tpl');
         return class extends HTMLElement {
             static get observedAttributes() {
@@ -84,31 +109,25 @@
             async updateLists() {
                 const data = await $app.data.loadItemsData();
 
-                const [recipeList, itemList] = this.querySelectorAll('.list-container.item-list ul');
-                while (recipeList.firstChild) {
-                    recipeList.firstChild.remove();
-                }
+                const lists = this.querySelectorAll('app-list');
+                let isRecipeList = true;
+                for (const appListEl of lists) {
+                    appListEl.setItems(
+                        data.map((item, i) => {
+                            if (isRecipeList !== !!item.recipeEntry) {
+                                return null;
+                            }
 
-                while (itemList.firstChild) {
-                    itemList.firstChild.remove();
-                }
+                            return {
+                                link: `#!/recipes/${item.id}`,
+                                title: item.name,
+                                spriteSrc: '/assets/items.png',
+                                spriteIndex: i,
+                            };
+                        }).filter(Boolean)
+                    );
 
-                const itemTpl = this.querySelector('.recipe-item-tpl');
-                let i = 0;
-                for (const item of data) {
-                    const el = itemTpl.content.cloneNode(true);
-                    el.querySelector('app-sprite').setAttribute('index', i);
-                    const link = el.querySelector('a');
-                    link.setAttribute('href', `#!/recipes/${item.id ?? 0}`);
-                    link.setAttribute('title', item.name);
-
-                    if (item?.recipeEntry) {
-                        recipeList.append(el);
-                    }
-                    else {
-                        itemList.append(el);
-                    }
-                    i++;
+                    isRecipeList = false;
                 }
             }
 
