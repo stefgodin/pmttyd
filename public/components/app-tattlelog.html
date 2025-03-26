@@ -1,0 +1,15 @@
+<template id="app-tattlelog-tpl">
+    <div class="section tattlelog">
+        <div class="section-content">Coming Soon</div>
+    </div>
+</template>
+<script>
+    $app.defineComponent('app-tattlelog', async () => {
+        const template = document.getElementById('app-tattlelog-tpl');
+        return class extends HTMLElement {
+            connectedCallback() {
+                this.append(template.content.cloneNode(true));
+            }
+        };
+    });
+</script>

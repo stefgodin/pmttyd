@@ -1,0 +1,90 @@
+<style>
+    app-list {
+        display: block;
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25em;
+            justify-content: center;
+            align-items: center;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul li {
+            filter: drop-shadow(0px 0px 3px);
+        }
+
+        ul li:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0px 0px 3px) brightness(1.2);
+        }
+    }
+</style>
+<template id="app-list-tpl">
+    <template class="app-list-el-tpl">
+        <li>
+            <a href="" title="">
+                <app-sprite src="/assets/badges.png" size="100" index="" scale="0.5" scale-md="0.6"></app-sprite>
+            </a>
+        </li>
+    </template>
+    <ul></ul>
+</template>
+<script>
+    $app.defineComponent('app-list', async () => {
+        const template = document.getElementById('app-list-tpl');
+        return class extends HTMLElement {
+            constructor() {
+                super();
+                this.items = [];
+                this.connected = false;
+            }
+
+            connectedCallback() {
+                this.append(template.content.cloneNode(true));
+                this.connected = true;
+                this.updateList();
+            }
+
+            setItems(items) {
+                this.items = [];
+                for (const item of items) {
+                    this.items.push({
+                        id: this.items.length + 1,
+                        link: item.link ?? '',
+                        title: item.title ?? '',
+                        spriteSrc: item.spriteSrc,
+                        spriteIndex: item.spriteIndex
+                    });
+                }
+
+                if (this.connected) {
+                    this.updateList();
+                }
+            }
+
+            updateList() {
+                const elTemplate = this.querySelector('.app-list-el-tpl');
+
+                const listEl = this.querySelector('ul');
+                while (listEl.firstChild) {
+                    listEl.firstChild.remove();
+                }
+
+                for (const item of this.items) {
+                    const itemEl = elTemplate.content.cloneNode(true);
+                    itemEl.querySelector('li').setAttribute('data-id', item.id);
+                    itemEl.querySelector('a').setAttribute('href', item.link);
+                    itemEl.querySelector('a').setAttribute('title', item.title)
+                    itemEl.querySelector('app-sprite').setAttribute('src', item.spriteSrc);
+                    itemEl.querySelector('app-sprite').setAttribute('index', item.spriteIndex);
+
+                    listEl.append(itemEl);
+                }
+            }
+        };
+    });
+</script>

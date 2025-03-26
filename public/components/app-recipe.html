@@ -1,0 +1,94 @@
+<style>
+    .app-recipe {
+        .hidden {
+            display: none;
+        }
+    }
+</style>
+<template id="app-recipe-tpl">
+    <div class="app-recipe">
+        <div class="ingredients">
+            <div class="ingredient">
+                <a>
+                    <app-sprite src="/assets/items.png" size="100" scale="0.3"></app-sprite>
+                </a>
+            </div>
+            <div class="ingredient hidden">
+                <a>
+                    <app-sprite src="/assets/items.png" size="100" scale="0.3"></app-sprite>
+                </a>
+            </div>
+            <div class="ingredient hidden" style="width: 30px; height: 30px;"></div>
+        </div>
+        <div class="result">
+            <a>
+                <app-sprite src="/assets/items.png" size="100" scale="0.6"></app-sprite>
+            </a>
+        </div>
+    </div>
+</template>
+<script>
+    $app.defineComponent('app-recipe', async () => {
+        const template = document.getElementById('app-recipe-tpl');
+        return class extends HTMLElement {
+            static get observedAttributes() {
+                return ['item', 'first-ingredient', 'second-ingredient'];
+            }
+
+            attributeChangedCallback() {
+                this.update();
+            }
+
+            connectedCallback() {
+                this.append(template.content.cloneNode(true));
+                this.update();
+            }
+
+            get itemId() {
+                const id = parseInt(this.getAttribute('item'));
+                return isNaN(id) ? 0 : id;
+            }
+
+            get firstIngredientId() {
+                const id = parseInt(this.getAttribute('first-ingredient'));
+                return isNaN(id) ? 0 : id;
+            }
+
+            get secondIngredientId() {
+                const id = parseInt(this.getAttribute('second-ingredient'));
+                return isNaN(id) ? 0 : id;
+            }
+
+            async update() {
+                const updateItemElement = (el, item) => {
+                    el.querySelector('app-sprite').setAttribute('index', (item?.id ?? 0) - 1);
+                    const anchorEl = el.querySelector('a');
+                    anchorEl.setAttribute('href', `#!/recipes/${item?.id ?? ''}`);
+                    anchorEl.setAttribute('title', item?.name ?? '');
+                };
+
+                const items = await $app.data.loadItemsData();
+
+                const itemEl = this.querySelector('.result');
+                updateItemElement(itemEl, items[this.itemId - 1] ?? null);
+
+                const ingredientElList = this.querySelectorAll('.ingredient');
+                const firstIngredientEl = ingredientElList[0];
+                const secondIngredientEl = ingredientElList[1];
+                const nullIngredientEl = ingredientElList[2];
+
+                updateItemElement(firstIngredientEl, items[this.firstIngredientId - 1] ?? null);
+
+                if (this.secondIngredientId > 0) {
+                    nullIngredientEl.classList.add('hidden');
+                    secondIngredientEl.classList.remove('hidden');
+                    updateItemElement(secondIngredientEl, items[this.secondIngredientId - 1] ?? null);
+                }
+                else {
+                    secondIngredientEl.classList.add('hidden');
+                    nullIngredientEl.classList.remove('hidden');
+                }
+            }
+        };
+    });
+</script>

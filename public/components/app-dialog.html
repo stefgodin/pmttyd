@@ -1,0 +1,78 @@
+<style>
+    app-dialog {
+        dialog::backdrop {
+            background-color: black;
+            opacity: 0.4;
+        }
+
+        dialog {
+            background: transparent;
+            border: 0;
+            outline: none;
+            margin: 0 auto;
+            scrollbar-width: none;
+        }
+    }
+</style>
+<template id="app-dialog-tpl">
+    <dialog class="app-dialog"></dialog>
+</template>
+<script>
+    $app.defineComponent('app-dialog', async () => {
+        const template = document.getElementById('app-dialog-tpl');
+        return class extends HTMLElement {
+            connectedCallback() {
+                const childElList = [...this.children];
+
+                this.append(template.content.cloneNode(true));
+                this.dialog = this.querySelector('dialog');
+
+                this.dialog.append(...childElList);
+
+                this.dialog.addEventListener('click', (event) => {
+                    if (this.persistent) {
+                        return;
+                    }
+
+                    const {top, left, width, height} = this.dialog.getBoundingClientRect();
+                    const [x, y] = [event.clientX, event.clientY];
+                    if (top > y || y > (top + height) || left > x || x > (left + width)) {
+                        this.close();
+                    }
+                });
+
+                this.dialog.addEventListener('close', () => this.dispatchEvent(new Event('close')));
+                this.dialog.addEventListener('cancel', (e) => {
+                    if (this.persistent) {
+                        e.preventDefault();
+                    }
+                });
+
+                for (const closeBtnEl of this.dialog.querySelectorAll('.dialog-close-button')) {
+                    closeBtnEl.addEventListener('click', () => this.close());
+                }
+            }
+
+            get persistent() {
+                if (!this.hasAttribute('persistent')) {
+                    return false;
+                }
+
+                if (this.getAttribute('persistent') === '') {
+                    return true;
+                }
+
+                const v = parseInt(this.getAttribute('persistent'));
+                return !isNaN(v) && v;
+            }
+
+            showModal() {
+                this.dialog.showModal();
+            }
+
+            close() {
+                this.dialog.close();
+            }
+        };
+    });
+</script>

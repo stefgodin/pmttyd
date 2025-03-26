@@ -1,0 +1,49 @@
+<style>
+    app-tabs {
+        [tab-item]:not(.app-tabs-active) {
+            display: none;
+        }
+    }
+</style>
+<script>
+    $app.defineComponent('app-tabs', async () => {
+        return class extends HTMLElement {
+            connectedCallback() {
+                this.addEventListener('click', (e) => {
+                    const tabEl = e.target.closest('[tab],app-tabs');
+                    if (tabEl !== this && tabEl.hasAttribute('tab')) {
+                        this.activateTab(tabEl.getAttribute('tab'));
+                    }
+                });
+            }
+
+            activateTab(id) {
+                for (const tabEl of this.querySelectorAll('[tab]')) {
+                    if (tabEl.closest('app-tabs') !== this) {
+                        continue;
+                    }
+
+                    if (tabEl.getAttribute('tab') === id) {
+                        tabEl.classList.add('app-tabs-active');
+                    }
+                    else {
+                        tabEl.classList.remove('app-tabs-active');
+                    }
+                }
+
+                for (const itemEl of this.querySelectorAll('[tab-item]')) {
+                    if (itemEl.closest('app-tabs') !== this) {
+                        continue;
+                    }
+
+                    if (itemEl.getAttribute('tab-item') === id) {
+                        itemEl.classList.add('app-tabs-active');
+                    }
+                    else {
+                        itemEl.classList.remove('app-tabs-active');
+                    }
+                }
+            }
+        };
+    });
+</script>

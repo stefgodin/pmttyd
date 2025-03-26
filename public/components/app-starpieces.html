@@ -1,0 +1,15 @@
+<template id="app-starpieces-tpl">
+    <div class="section starpieces">
+        <div class="section-content">Coming Soon</div>
+    </div>
+</template>
+<script>
+    $app.defineComponent('app-starpieces', async () => {
+        const template = document.getElementById('app-starpieces-tpl');
+        return class extends HTMLElement {
+            connectedCallback() {
+                this.append(template.content.cloneNode(true));
+            }
+        };
+    });
+</script>

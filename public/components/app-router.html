@@ -1,0 +1,70 @@
+<style>
+    app-router {
+        display: block;
+        margin-top: -1em;
+        padding: 0 0.25em 0.25em 0.25em;
+        max-width: 996px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+<!-- sm -->
+<style media="(min-width: 576px)">
+    app-router {
+        padding: 0 1em 1em 1em;
+    }
+</style>
+<script>
+    $app.defineComponent('app-router', async () => {
+        return class extends HTMLElement {
+            connectedCallback() {
+                this.routes = [];
+                this.activeRoute = null;
+                this.componentEl = null;
+                this.hashchangeListener = () => this.update();
+                window.addEventListener('hashchange', this.hashchangeListener);
+                this.update();
+            }
+
+            disconnectedCallback() {
+                this.activeRoute = null;
+                this.componentEl = null;
+                window.removeEventListener('hashchange', this.hashchangeListener);
+            }
+
+            setRoutes(routes) {
+                this.routes = routes;
+                this.update();
+            }
+
+            async update() {
+                const segments = (window.location.hash ?? '').replace('#!', '').split('/').filter(Boolean);
+                const nextRoute = this.routes.find((r) => r.resolve(segments)) ?? null;
+                if (nextRoute === null) {
+                    return;
+                }
+
+                if (this.activeRoute !== nextRoute) {
+                    this.activeRoute = nextRoute;
+                    if (typeof this.activeRoute.component === "string") {
+                        await $app.loadComponent(this.activeRoute.component);
+                        this.componentEl = document.createElement(this.activeRoute.component);
+                        this.replaceChildren(this.componentEl);
+                    }
+                    else if (typeof this.activeRoute.component === "function") {
+                        this.componentEl = this.activeRoute.component(segments);
+                        this.replaceChildren(this.componentEl);
+                    }
+                    else {
+                        this.componentEl = null;
+                        this.replaceChildren();
+                    }
+                }
+
+                if (typeof this.activeRoute.change === "function") {
+                    await Promise.resolve(this.activeRoute.change(segments, this.componentEl));
+                }
+            }
+        };
+    });
+</script>
